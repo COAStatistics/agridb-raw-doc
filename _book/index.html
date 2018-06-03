@@ -100,7 +100,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>農業統計資料庫說明文件</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5b088e6a188e5889de5a78be58c96"><i class="fa fa-check"></i>專案初始化</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-language"><i class="fa fa-check"></i>R-language</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>1</b> 前言</a></li>
 <li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 休耕轉作資料庫</a><ul>
@@ -173,15 +172,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1>農業統計資料庫說明文件</h1>
 <ul>
 <li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li></li>
+<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
 </ul>
 <div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
 <h2>專案初始化</h2>
-<p>git clone <a href="https://github.com/COAStatistics/agridb.git" class="uri">https://github.com/COAStatistics/agridb.git</a></p>
-</div>
-<div id="r-language" class="section level2 unnumbered">
-<h2>R-language</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
+git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
+
+<span class="co">#2. install R-Studio</span>
+https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
+
+<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
 <span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
 <span class="kw">library</span>(bookdown)
 <span class="kw">library</span>(rmarkdown)</code></pre></div>
