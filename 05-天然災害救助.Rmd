@@ -1,0 +1,81 @@
+# 天然災害救助
+
+***
+
+## 緣起
+* 由農糧署白旭凱專員提供，此資料為農民申請天然災害救助之資料
+* 負責人：農糧署白旭凱專員
+* 注意事項：本資料會索取**兩次**，一次是索取至A年10月之資料(**給主力農家使用**)，一次是A+1年的3月時，索取A年的全年度資料(**資料庫入庫用**)
+
+## Schema
+
+欄位-中文        | 欄位-英文         | 欄位屬性    | 定義
+-----------------|-------------------|-------------|----------
+年度             | year              | 
+災害名稱         | evt_name          | 
+發生日期         | dateTime          | 
+縣市             | county            | 
+鄉鎮             | town              | 
+農戶姓名         | ownerName         | 
+身份證號         | ownerID           | 
+地址             | addr              |
+地段             | landNo7           | 
+地段中文         | landNo7CHN        | 
+地號             | landNo8           | 
+本筆面積(公頃)   | landArea          | 
+權利面積(公頃)   | landRightsArea    | 
+申請者           | appName           |
+申請作物         | applyCrop         | 
+申請面積(公頃)   | applyArea         | 
+申請受害率       | applyDamageRate   | 
+核定核定結果     | approveCheck      | 
+核定作物         | approveCrop       | 
+核定面積(公頃)   | approveArea       | 
+核定受害率       | approveDamageRate | 
+補助方式         | subsidyType       | 
+救助單價(元)     | subsidyStandard   | 
+核定救助金額(元) | subsidyAmount     | 
+
+
+## 套件與匯入
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+rm(list=ls())
+library(tidyverse)
+library(readxl) # under tidyverse.
+library(prettydoc) # for beautiful markdown doc.
+setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\天然災害\\106年天然災害救助明細\\原始資料")
+acd <- read.csv("acdAllList106.txt", header=F)
+colname <- c('year', 'evt_name', 'dateTime','county', 'town', 'ownerName', 'ownerID', 'addr', 'landNo7', 'landNo7CHN', 'landNo8', 'landArea', 'landRightsArea', "appName", 'applyCrop', 'applyArea', 'applyDamageRate', 'approveCheck', 'approveCrop', 'approveArea', 'approveDamageRate', 'subsidyType', 'subsidyStandard', 'subsidyAmount')
+names(acd) <- colname
+```
+
+## 檢查欄位最大長度
+> 注意：下列函數必須讓資料為tibble格式才可運作
+
+```{r eval=FALSE, warning=FALSE, message=FALSE}
+acd <- as_tibble(acd)
+index <- 1
+max_nchar <- function(x) {max(nchar(x))}
+for (i in 1:dim(acd)[2]) {
+  temp <- acd[,i]
+  temp <- apply(temp, 2, max_nchar)
+  if (index == 1) {
+    table_nchar <- temp
+    index <- 0
+  } else table_nchar <- c(table_nchar, temp)
+}
+table_nchar
+```
+
+## 資料輸出
+
+```{r eval=FALSE}
+setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\天然災害\\106年天然災害救助明細")
+write.table(acd, "raw_acdList106.txt", row.names=F, sep="\t", quote=F)
+```
+
+
+## SQL
+```{r eval=FALSE}
+```

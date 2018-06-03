@@ -1,0 +1,43 @@
+# 參照資料庫
+***
+
+這邊放的都是參照資料庫，包含有
+
+1. 內政部地政司**全國段代碼表**整合
+2. 休耕轉作代碼表
+
+## 全國段代碼整合
+
+### 處理流程 {-}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+rm(list=ls())
+library(stringr)
+library(lubridate)
+setwd("D:\\sw\\00-整合資料庫\\00-整合資料庫\\10全國段代碼(內政部地政司)")
+code_list <- read.csv(paste0("全國段名代碼表_", year(Sys.Date()), ".csv"), header=T, stringsAsFactors=F)
+country_list <- read.csv(paste0("全國縣市鄉鎮市區代碼表_", year(Sys.Date()), ".csv"), header=T, stringsAsFactors=F)
+
+code_list$縣市代碼 <- substr(code_list$所區碼, 1, 1) # 
+code_list$縣市 <- country_list$縣市名稱[match(code_list$縣市代碼, country_list$縣市代碼)]
+code_list$鄉鎮代碼 <- substr(code_list$所區碼, 3,4)
+code_list$地段 <- ifelse(code_list$小段=="", code_list$地段 <- code_list$段, code_list$地段 <- paste(code_list$段, code_list$小段, sep="-"))
+
+#Use所區碼 to merge two table, then get the 鄉鎮市區----
+country_list$所區碼 <- paste0(country_list$事務所代碼, str_sub(paste0("0", country_list$鄉鎮市區代碼), -2, -1))
+code_list$鄉鎮市區 <- country_list$鄉鎮市區名稱[match(code_list$所區碼, country_list$所區碼)]
+
+#Use所區碼 to merge two table, then get the 鄉鎮市區
+code_list$段代碼_6 <- paste0(substr(code_list$所區碼, 1,2), str_sub(paste0("000", code_list$代碼), -4, -1))
+code_list$段代碼_7 <- paste0(code_list$縣市代碼, code_list$鄉鎮代碼, substr(code_list$段代碼_6, 3, 6))
+code_list$最後更新日期 <- Sys.Date()
+code_list <- code_list[,c("縣市代碼", "縣市", "鄉鎮市區", "地段", "段", "小段", "代碼", "所區碼", "段代碼_6", "段代碼_7", "備註", "最後更新日期")] #rearrange column
+names(code_list) <- c("縣市代碼", "縣市", "鄉鎮市區", "地段", "大段", "小段", "代碼", "所區碼", "段代碼6碼", "段代碼7碼", "備註", "最後更新日期")
+head(code_list, 30)
+```
+
+### 資料輸出 {-}
+
+```{r output, eval=FALSE}
+write.csv(code_list, "106整合全國地段代碼表.csv", row.names=F, quote=F)
+
+```

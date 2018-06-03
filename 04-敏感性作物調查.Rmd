@@ -1,0 +1,112 @@
+# 敏感性作物調查
+
+***
+
+## 緣起
+* 農糧署每年舉辦敏感性作物調查，每年列舉易產銷失衡之作物，拿著PDA下鄉調查
+* 負責人：逢甲楊老師
+
+## Schema
+
+欄位-中文    | 欄位-英文    | 欄位屬性      | 定義
+-------------|--------------|---------------|----------
+土地座落     | landNo       | varchar(16)   | 15碼地段地號
+面積         | DCL_CHGA1    | float         |
+作物代碼     | DCL_CHGCD1   | char(3)       |
+分子         | NUM          | numeric(18,0) |
+分母         | DENO         | numeric(18,0) |
+勘查日期     | UPDATE       | char(8)       |
+處別代碼     | PT_ID        | char(2)       |
+鄉鎮代碼     | EID          | char(4)       |
+變更使用面積 | LNDCHRA      | float         |
+土地面積     | LNDARA       | float         |
+狀況         | STATUS       | char(2)       | 0與NA
+河川地註記   | DCL_LNDTYPE  | varchar(2)    | 見下方說明
+作物生長期   | DCL_BRTYP    | varchar(2)    | 見下方說明
+保留1        | DCL_TRTYP    | varchar(50)   |
+保留2        | DCL_TRDATE   | varchar(50)   |
+異動時間     | UPDTIME      | varchar(50)   |
+土地使用區分 | 土地使用區分 | varchar(50)   | 無使用
+編定使用種類 | 編定使用種類 | varchar(50)   | 無使用
+
+## 河川地註記
+
+代碼 | 定義
+-----|-------
+1    | 地籍
+2    | 河川地
+
+## 作物生長期
+代碼 | 定義 
+-----|------
+1    | 定植期
+2    | 蓮坐期
+3    | 豎立期
+4    | 結球期
+5    | 已採收
+6    | 待判
+
+## 套件匯入
+```{r eval=FALSE}
+setwd("C:\\Users\\so6378-1.NTCOA\\Desktop\\106公務資料檢查\\1070425楊老師\\6敏感作物備份106年")
+library(tidyverse)
+library(prettydoc) # for beautiful markdown doc.
+library(readxl) # under tidyverse.
+library(tidyverse)
+```
+
+## 資料處理
+```{r eval=FALSE}
+file <- read_excel("6敏感作物備份106年.xlsx") # use readr package under tidyverse
+dim(file) # rows: 73089 columns: 18
+names(file) <- c("landNo", "DCL_CHGA1", "DCL_CHGCD1", "NUM", "DENO", "UPDATE", "PT_ID", "EID", "LNDCHRA", "LNDARA", "STATUS", "DCL_LNDTYPE", "DCL_BRTYP", "DCL_TRTYP", "DCL_TRDATE", "UPDTIME", "土地使用區分", "編定使用種類") # follow schema.
+file2 <- file[-which(nchar(file$landNo) !=15),] # remove landNo = M080040808960044
+write.table(file2, "raw_106pdadecl.txt", sep=",", row.names=F, quote=FALSE) # import into SQL(aerial_graphic.dbo.raw_RICE106)
+```
+
+## SQL-匯入
+```{r SQL_import, eval=FALSE}
+# CREATE TABLE [dbo].[raw_106pdadecl] (
+# [landNo] varchar(16),
+# [DCL_CHGA1] float,
+# [DCL_CHGCD1] char(3),
+# [NUM] numeric(18,0),
+# [DENO] numeric(18,0),
+# [UPDATE] char(8),
+# [PT_ID] char(2),
+# [EID] char(4),
+# [LNDCHRA] float,
+# [LNDARA] float,
+# [STATUS] char(2),
+# [DCL_LNDTYPE] varchar(2),
+# [DCL_BRTYP] varchar(2),
+# [DCL_TRTYP] varchar(50),
+# [DCL_TRDATE] varchar(50),
+# [UPDTIME] varchar(50),
+# [土地使用區分] varchar(50),
+# [編定使用種類] varchar(50)
+# )
+```
+
+## SQL-設定index與註解
+```{r SQL_index&note, eval=FALSE}
+
+```
+
+## 資料檢查
+```{r data_inspect, eval=FALSE}
+# SELECT b.nameBig, count(nameBig) as 筆數
+# FROM [sensitive].[dbo].[raw_106pdadecl] a
+# left join fallow2.dbo.phstemp_code as b
+# on a.DCL_CHGCD1 = b.codeSmall
+# group by b.nameBig
+# order by b.nameBig
+```
+nameBig      |	筆數
+-------------|------------------
+水稻         |  9661
+地區特產     |	37415
+契作硬質玉米 |	22
+停止補貼     |	6349
+無補貼       |	19343
+種植綠肥     |	299

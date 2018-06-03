@@ -1,0 +1,161 @@
+# 稻穀收購清冊(paddy procurement)
+
+***
+
+## 緣起
+* 繳交公糧之資料
+* 負責人：逢甲大學楊老師
+
+## Schema
+
+欄位-中文      | 欄位-英文      | 欄位屬性      | 定義
+---------------|----------------|---------------|------
+年度           | SYY            | char(3)       |
+期別           | SPP            | char(1)       |
+繳穀地代號     | PH_LOCCODE     | char(4)       |
+繳穀地縣市     | PT_ID          | char(3)       |
+繳穀地鄉鎮     | EID            | varchar(6)    |
+繳穀地         | PH_PLACE       | varchar(17)   |  
+農戶檔號       | PH_PSTNO       | varchar(9)    | 
+**農戶證號**   | **appID**      | **char(10)**  | **主鍵：身分證字號**
+收購日期       | PH_DTA         | char(7)       |
+收購時間       | PH_TIME        | char(4)       |
+含車重         | PH_WAMT        | numeric       |
+空車重         | PH_WDCMT       | numeric       |
+計畫濕穀收購   | PH_RMT11       | numeric       |
+計畫乾穀收購   | PH_RMT12       | numeric       |
+輔導濕穀收購   | PH_RMT31       | numeric       |
+輔導乾穀收購   | PH_RMT32       | numeric       |
+餘糧濕穀收購   | PH_RMT41       | numeric       |
+餘糧乾穀收購   | PH_RMT42       | numeric       |
+良質米濕穀收購 | PH_AMT51       | numeric       |
+良質米乾穀收購 | PH_AMT52       | numeric       |
+自營糧濕穀收購 | PH_AMT71       | numeric       |
+自營糧乾穀收購 | PH_AMT72       | numeric       |
+濕穀寄倉       | PH_AM1         | numeric       |
+乾穀寄倉       | PH_AM2         | numeric       |
+聯單編號       | PH_SEQNO       | numeric       |
+收購次數       | PH_SEQTM       | numeric       |
+稻穀類型       | PH_KIND        | char(2)       |
+補助款         | PH_HTOT        | numeric       |
+應付款         | PH_DTOT        | numeric       |
+實存金額       | PH_MONEY       | numeric       |
+自營價款       | PH_SMONEY      | numeric       |
+公糧烘乾費     | PH_DRYM        | numeric       |
+自營烘乾費     | PH_SDRYM       | numeric       |
+含水率         | PH_RATE        | numeric       |
+自營扣款       | PH_SDCNT       | numeric       |
+農會補助費     | PH_HLPF        | numeric       |
+包袋費         | PH_PCKF        | numeric       |
+代扣運費       | PH_TRSF        | numeric       |
+包袋費扣項     | PH_OTHF        | numeric       |
+進倉補助費     | PH_STOF        | numeric       |
+補助運費       | PH_HTRSF       | numeric       |
+入倉裝袋費     | PH_PSTOF       | numeric       |
+自營稻穀單價   | PH_GO71        | numeric       |
+溢繳稻穀價差   | PH_DED1        | numeric       |
+計畫收購金額   | PH_RMT12_MONEY | numeric       |
+輔導收購金額   | PH_RMT32_MONEY | numeric       |
+餘糧收購金額   | PH_RMT42_MONEY | numeric       |
+建立人         | CREATEID       | char(11)      |
+建立日期       | CREATETIME     | smalldatetime |
+異動人         | UPDID          | char(11)      |
+異動日期       | UPDTIME        | smalldatetime |
+
+
+## 套件匯入與資料處理
+
+```{r eval=FALSE, warning=FALSE, message=FALSE}
+#rm(list=ls())
+setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\收購\\106PHSAMT")
+library(tidyverse)
+library(readxl) # under tidyverse.
+library(prettydoc) # for beautiful markdown doc.
+p1 <- read_excel("106年1期收購檔備份.xlsx")
+p2 <- read_excel("106年2期收購檔備份.xlsx")
+pf <- rbind(p1, p2)
+names(pf) <- c("SYY", "SPP", "PH_LOCCODE", "PT_ID", "EID", "PH_PLACE", "PH_PSTNO", "appID", "PH_DTA", "PH_TIME", "PH_WAMT", "PH_CMT", "PH_RMT11", "PH_RMT12", "PH_RMT31", "PH_RMT32", "PH_RMT41", "PH_RMT42", "PH_AMT51", "PH_AMT52", "PH_AMT71", "PH_AMT72", "PH_AM1", "PH_AM2", "PH_SEQNO", "PH_SEQTM", "PH_KIND", "PH_HTOT", "PH_DTOT", "PH_MONEY", "PH_SMONEY", "PH_DRYM", "PH_SDRYM", "PH_RATE", "PH_SDCNT", "PH_HLPF", "PH_PCKF", "PH_TRSF", "PH_OTHF", "PH_STOF", "PH_HTRSF", "PH_PSTOF", "PH_GO71", "PH_DED1", "PH_RMT12_MONEY", "PH_RMT32_MONEY", "PH_RMT42_MONEY", "CREATEID", "CREATETIME", "UPDID", "UPDTIME")
+# PH_LOCCODE：繳穀地代號 → 自行命名
+# PH_PLACE：繳穀地 → 自行命名
+# PH_WDCMT: 對照最原始的schema只對的到濕穀空車重與乾穀空車重，省略為PH_CMT → 自行命名
+```
+
+## 檢查欄位最大長度
+
+```{r eval=FALSE, warning=FALSE, message=FALSE}
+index <- 1
+max_nchar <- function(x) {max(nchar(x))}
+for (i in 1:dim(pf)[2]) {
+  temp <- pf[,i]
+  temp <- apply(temp, 2, max_nchar)
+  if (index == 1) {
+    table_nchar <- temp
+    index <- 0
+  } else table_nchar <- c(table_nchar, temp)
+}
+table_nchar
+```
+
+## SQL匯入
+
+```{r }
+# CREATE TABLE [dbo].[raw_106phsamt] (
+# [SYY] char(3),
+# [SPP] char(1),
+# [PH_LOCCODE] char(4),
+# [PT_ID] char(6),
+# [EID] varchar(12),
+# [PH_PLACE] varchar(34),
+# [PH_PSTNO] varchar(9),
+# [appID] char(10),
+# [PH_DTA] char(7),
+# [PH_TIME] char(4),
+# [PH_WAMT] int,
+# [PH_CMT] int,
+# [PH_RMT11] int,
+# [PH_RMT12] int,
+# [PH_RMT31] int,
+# [PH_RMT32] int,
+# [PH_RMT41] int,
+# [PH_RMT42] int,
+# [PH_AMT51] int,
+# [PH_AMT52] int,
+# [PH_AMT71] int,
+# [PH_AMT72] int,
+# [PH_AM1] int,
+# [PH_AM2] int,
+# [PH_SEQNO] int,
+# [PH_SEQTM] int,
+# [PH_KIND] char(4),
+# [PH_HTOT] int,
+# [PH_DTOT] int,
+# [PH_MONEY] int,
+# [PH_SMONEY] int,
+# [PH_DRYM] int,
+# [PH_SDRYM] int,
+# [PH_RATE] int,
+# [PH_SDCNT] int,
+# [PH_HLPF] int,
+# [PH_PCKF] int,
+# [PH_TRSF] int,
+# [PH_OTHF] int,
+# [PH_STOF] int,
+# [PH_HTRSF] int,
+# [PH_PSTOF] int,
+# [PH_GO71] float,
+# [PH_DED1] int,
+# [PH_RMT12_MONEY] int,
+# [PH_RMT32_MONEY] int,
+# [PH_RMT42_MONEY] int,
+# [CREATEID] char(11),
+# [CREATETIME] smalldatetime,
+# [UPDID] char(11),
+# [UPDTIME] smalldatetime
+# )
+```
+
+## 資料輸出
+
+```{r eval=FALSE}
+write.table(pf, "raw_106phsamt.txt", sep = ",", row.names = F, quote = FALSE)
+```

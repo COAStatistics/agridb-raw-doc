@@ -1,0 +1,41 @@
+# 航照稻作辨識 (aerial_graphic)
+***
+
+## 緣起
+* 由農試所提供，此資料為利用航照圖判釋全台稻作的生產位置，整理後會用於繪製全國稻米生產分布圖
+* 負責人：農試所利沛燕專員
+
+## Schema
+
+欄位-中文 | 欄位-英文 | 欄位屬性    | 定義
+----------|-----------|-------------|----------
+航測面積  | AREA      | float       | 面積(公頃)
+糧食碼    | RICE_CODE | varchar(6)  | 
+內政碼    | MOI_CODE  | varchar(7)  |
+地目      | LNDNO5    | char(1)     | 田、林、旱、牧、建...等
+地號      | LNDNO4    | varchar(6)  | 地號，R開頭為河川地
+水稻      | RICD      | char(1)     |
+KEYNO     | landNo    | varchar(15) | 15碼代碼，需轉為14碼農委會標準碼
+圖號      | PIC_NO    | char(8)     |
+年度      | SYY       | char(3)     | 民國年
+期別      | SPP       | char(1)     | 期作別
+
+
+## 套件匯入
+
+```{r load_package, eval=FALSE}
+setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\航照稻作圖資轉文字檔\\106年")
+library(tidyverse)
+library(readxl) # under tidyverse.
+library(prettydoc) # for beautiful markdown doc.
+```
+
+## 資料處理
+
+```{r data_process, eval=FALSE}
+p1 <- read_excel("1061rice_文數字.xlsx")
+p2 <- read_excel("1062rice_文數字.xlsx")
+pf <- rbind(p1, p2)
+names(pf) <- c("AREA", "RICE_CODE", "MOI_CODE", "LNDNO5", "LNDNO4", "RICD", "landNo", "PIC_NO", "SYY", "SPP") # follow last year.
+write.table(pf, "raw_RICE106.txt", sep=",", row.names=F, quote=FALSE) # import into SQL(aerial_graphic.dbo.raw_RICE106)
+```

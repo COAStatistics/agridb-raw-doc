@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>農業統計資料庫說明文件</title>
+  <meta name="description" content="農委會統計室執行之農業統計資料庫說明文件">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="農業統計資料庫說明文件" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="農委會統計室執行之農業統計資料庫說明文件" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="農業統計資料庫說明文件" />
+  
+  <meta name="twitter:description" content="農委會統計室執行之農業統計資料庫說明文件" />
+  
+
+<meta name="author" content="SzuWei Chen">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="-aerial-graphic.html">
+<link rel="next" href="section-5.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>農業統計資料庫說明文件</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5b088e6a188e5889de5a78be58c96"><i class="fa fa-check"></i>專案初始化</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-language"><i class="fa fa-check"></i>R-language</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>1</b> 前言</a></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 休耕轉作資料庫</a><ul>
+<li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#dcl"><i class="fa fa-check"></i><b>2.1</b> 休耕轉作申報檔(DCL)</a></li>
+<li class="chapter" data-level="2.2" data-path="section-2.html"><a href="section-2.html#rcd"><i class="fa fa-check"></i><b>2.2</b> 休耕轉作核定檔(RCD)</a></li>
+<li class="chapter" data-level="2.3" data-path="section-2.html"><a href="section-2.html#paddy_procrement"><i class="fa fa-check"></i><b>2.3</b> 休耕轉作補貼清冊檔(paddy_procrement)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="-aerial-graphic.html"><a href="-aerial-graphic.html"><i class="fa fa-check"></i><b>3</b> 航照稻作辨識 (aerial_graphic)</a><ul>
+<li class="chapter" data-level="3.1" data-path="-aerial-graphic.html"><a href="-aerial-graphic.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 緣起</a></li>
+<li class="chapter" data-level="3.2" data-path="-aerial-graphic.html"><a href="-aerial-graphic.html#schema"><i class="fa fa-check"></i><b>3.2</b> Schema</a></li>
+<li class="chapter" data-level="3.3" data-path="-aerial-graphic.html"><a href="-aerial-graphic.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 套件匯入</a></li>
+<li class="chapter" data-level="3.4" data-path="-aerial-graphic.html"><a href="-aerial-graphic.html#section-3.4"><i class="fa fa-check"></i><b>3.4</b> 資料處理</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 敏感性作物調查</a><ul>
+<li class="chapter" data-level="4.1" data-path="section-4.html"><a href="section-4.html#-1"><i class="fa fa-check"></i><b>4.1</b> 緣起</a></li>
+<li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#schema-1"><i class="fa fa-check"></i><b>4.2</b> Schema</a></li>
+<li class="chapter" data-level="4.3" data-path="section-4.html"><a href="section-4.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 河川地註記</a></li>
+<li class="chapter" data-level="4.4" data-path="section-4.html"><a href="section-4.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 作物生長期</a></li>
+<li class="chapter" data-level="4.5" data-path="section-4.html"><a href="section-4.html#-1"><i class="fa fa-check"></i><b>4.5</b> 套件匯入</a></li>
+<li class="chapter" data-level="4.6" data-path="section-4.html"><a href="section-4.html#-1"><i class="fa fa-check"></i><b>4.6</b> 資料處理</a></li>
+<li class="chapter" data-level="4.7" data-path="section-4.html"><a href="section-4.html#sql-"><i class="fa fa-check"></i><b>4.7</b> SQL-匯入</a></li>
+<li class="chapter" data-level="4.8" data-path="section-4.html"><a href="section-4.html#sql-index"><i class="fa fa-check"></i><b>4.8</b> SQL-設定index與註解</a></li>
+<li class="chapter" data-level="4.9" data-path="section-4.html"><a href="section-4.html#section-4.9"><i class="fa fa-check"></i><b>4.9</b> 資料檢查</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 天然災害救助</a><ul>
+<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#-2"><i class="fa fa-check"></i><b>5.1</b> 緣起</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#schema-2"><i class="fa fa-check"></i><b>5.2</b> Schema</a></li>
+<li class="chapter" data-level="5.3" data-path="section-5.html"><a href="section-5.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 套件與匯入</a></li>
+<li class="chapter" data-level="5.4" data-path="section-5.html"><a href="section-5.html#section-5.4"><i class="fa fa-check"></i><b>5.4</b> 檢查欄位最大長度</a></li>
+<li class="chapter" data-level="5.5" data-path="section-5.html"><a href="section-5.html#section-5.5"><i class="fa fa-check"></i><b>5.5</b> 資料輸出</a></li>
+<li class="chapter" data-level="5.6" data-path="section-5.html"><a href="section-5.html#sql"><i class="fa fa-check"></i><b>5.6</b> SQL</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="paddy-procurement.html"><a href="paddy-procurement.html"><i class="fa fa-check"></i><b>6</b> 稻穀收購清冊(paddy procurement)</a><ul>
+<li class="chapter" data-level="6.1" data-path="paddy-procurement.html"><a href="paddy-procurement.html#-3"><i class="fa fa-check"></i><b>6.1</b> 緣起</a></li>
+<li class="chapter" data-level="6.2" data-path="paddy-procurement.html"><a href="paddy-procurement.html#schema-3"><i class="fa fa-check"></i><b>6.2</b> Schema</a></li>
+<li class="chapter" data-level="6.3" data-path="paddy-procurement.html"><a href="paddy-procurement.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 套件匯入與資料處理</a></li>
+<li class="chapter" data-level="6.4" data-path="section-4.html"><a href="section-4.html#-1"><i class="fa fa-check"></i><b>6.4</b> 檢查欄位最大長度</a></li>
+<li class="chapter" data-level="6.5" data-path="section-5.html"><a href="section-5.html#sql"><i class="fa fa-check"></i><b>6.5</b> SQL匯入</a></li>
+<li class="chapter" data-level="6.6" data-path="section-4.html"><a href="section-4.html#-1"><i class="fa fa-check"></i><b>6.6</b> 資料輸出</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 參照資料庫</a><ul>
+<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 全國段代碼整合</a><ul>
+<li class="chapter" data-level="" data-path="section-7.html"><a href="section-7.html#e89995e79086e6b581e7a88b"><i class="fa fa-check"></i>處理流程</a></li>
+<li class="chapter" data-level="" data-path="section-5.html"><a href="section-5.html#-2"><i class="fa fa-check"></i>資料輸出</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">農業統計資料庫說明文件</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-4" class="section level1">
+<h1><span class="header-section-number">4</span> 敏感性作物調查</h1>
+<hr />
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> 緣起</h2>
+<ul>
+<li>農糧署每年舉辦敏感性作物調查，每年列舉易產銷失衡之作物，拿著PDA下鄉調查</li>
+<li>負責人：逢甲楊老師</li>
+</ul>
+</div>
+<div id="schema-1" class="section level2">
+<h2><span class="header-section-number">4.2</span> Schema</h2>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>土地座落</td>
+<td>landNo</td>
+<td>varchar(16)</td>
+<td>15碼地段地號</td>
+</tr>
+<tr class="even">
+<td>面積</td>
+<td>DCL_CHGA1</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>作物代碼</td>
+<td>DCL_CHGCD1</td>
+<td>char(3)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>分子</td>
+<td>NUM</td>
+<td>numeric(18,0)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>分母</td>
+<td>DENO</td>
+<td>numeric(18,0)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勘查日期</td>
+<td>UPDATE</td>
+<td>char(8)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>處別代碼</td>
+<td>PT_ID</td>
+<td>char(2)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>鄉鎮代碼</td>
+<td>EID</td>
+<td>char(4)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>變更使用面積</td>
+<td>LNDCHRA</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>土地面積</td>
+<td>LNDARA</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>狀況</td>
+<td>STATUS</td>
+<td>char(2)</td>
+<td>0與NA</td>
+</tr>
+<tr class="even">
+<td>河川地註記</td>
+<td>DCL_LNDTYPE</td>
+<td>varchar(2)</td>
+<td>見下方說明</td>
+</tr>
+<tr class="odd">
+<td>作物生長期</td>
+<td>DCL_BRTYP</td>
+<td>varchar(2)</td>
+<td>見下方說明</td>
+</tr>
+<tr class="even">
+<td>保留1</td>
+<td>DCL_TRTYP</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>保留2</td>
+<td>DCL_TRDATE</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>異動時間</td>
+<td>UPDTIME</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>土地使用區分</td>
+<td>土地使用區分</td>
+<td>varchar(50)</td>
+<td>無使用</td>
+</tr>
+<tr class="even">
+<td>編定使用種類</td>
+<td>編定使用種類</td>
+<td>varchar(50)</td>
+<td>無使用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-4.3" class="section level2">
+<h2><span class="header-section-number">4.3</span> 河川地註記</h2>
+<table>
+<thead>
+<tr class="header">
+<th>代碼</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>地籍</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>河川地</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-4.4" class="section level2">
+<h2><span class="header-section-number">4.4</span> 作物生長期</h2>
+<table>
+<thead>
+<tr class="header">
+<th>代碼</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>定植期</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>蓮坐期</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>豎立期</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>結球期</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>已採收</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>待判</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">4.5</span> 套件匯入</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">so6378-1.NTCOA</span><span class="ch">\\</span><span class="st">Desktop</span><span class="ch">\\</span><span class="st">106公務資料檢查</span><span class="ch">\\</span><span class="st">1070425楊老師</span><span class="ch">\\</span><span class="st">6敏感作物備份106年&quot;)</span>
+<span class="st">library(tidyverse)</span>
+<span class="st">library(prettydoc) # for beautiful markdown doc.</span>
+<span class="st">library(readxl) # under tidyverse.</span>
+<span class="st">library(tidyverse)</span></code></pre></div>
+</div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">4.6</span> 資料處理</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;6敏感作物備份106年.xlsx&quot;</span>) <span class="co"># use readr package under tidyverse</span>
+<span class="kw">dim</span>(file) <span class="co"># rows: 73089 columns: 18</span>
+<span class="kw">names</span>(file) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;landNo&quot;</span>, <span class="st">&quot;DCL_CHGA1&quot;</span>, <span class="st">&quot;DCL_CHGCD1&quot;</span>, <span class="st">&quot;NUM&quot;</span>, <span class="st">&quot;DENO&quot;</span>, <span class="st">&quot;UPDATE&quot;</span>, <span class="st">&quot;PT_ID&quot;</span>, <span class="st">&quot;EID&quot;</span>, <span class="st">&quot;LNDCHRA&quot;</span>, <span class="st">&quot;LNDARA&quot;</span>, <span class="st">&quot;STATUS&quot;</span>, <span class="st">&quot;DCL_LNDTYPE&quot;</span>, <span class="st">&quot;DCL_BRTYP&quot;</span>, <span class="st">&quot;DCL_TRTYP&quot;</span>, <span class="st">&quot;DCL_TRDATE&quot;</span>, <span class="st">&quot;UPDTIME&quot;</span>, <span class="st">&quot;土地使用區分&quot;</span>, <span class="st">&quot;編定使用種類&quot;</span>) <span class="co"># follow schema.</span>
+file2 &lt;-<span class="st"> </span>file[<span class="op">-</span><span class="kw">which</span>(<span class="kw">nchar</span>(file<span class="op">$</span>landNo) <span class="op">!=</span><span class="dv">15</span>),] <span class="co"># remove landNo = M080040808960044</span>
+<span class="kw">write.table</span>(file2, <span class="st">&quot;raw_106pdadecl.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">quote=</span><span class="ot">FALSE</span>) <span class="co"># import into SQL(aerial_graphic.dbo.raw_RICE106)</span></code></pre></div>
+</div>
+<div id="sql-" class="section level2">
+<h2><span class="header-section-number">4.7</span> SQL-匯入</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># CREATE TABLE [dbo].[raw_106pdadecl] (</span>
+<span class="co"># [landNo] varchar(16),</span>
+<span class="co"># [DCL_CHGA1] float,</span>
+<span class="co"># [DCL_CHGCD1] char(3),</span>
+<span class="co"># [NUM] numeric(18,0),</span>
+<span class="co"># [DENO] numeric(18,0),</span>
+<span class="co"># [UPDATE] char(8),</span>
+<span class="co"># [PT_ID] char(2),</span>
+<span class="co"># [EID] char(4),</span>
+<span class="co"># [LNDCHRA] float,</span>
+<span class="co"># [LNDARA] float,</span>
+<span class="co"># [STATUS] char(2),</span>
+<span class="co"># [DCL_LNDTYPE] varchar(2),</span>
+<span class="co"># [DCL_BRTYP] varchar(2),</span>
+<span class="co"># [DCL_TRTYP] varchar(50),</span>
+<span class="co"># [DCL_TRDATE] varchar(50),</span>
+<span class="co"># [UPDTIME] varchar(50),</span>
+<span class="co"># [土地使用區分] varchar(50),</span>
+<span class="co"># [編定使用種類] varchar(50)</span>
+<span class="co"># )</span></code></pre></div>
+</div>
+<div id="sql-index" class="section level2">
+<h2><span class="header-section-number">4.8</span> SQL-設定index與註解</h2>
+</div>
+<div id="section-4.9" class="section level2">
+<h2><span class="header-section-number">4.9</span> 資料檢查</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># SELECT b.nameBig, count(nameBig) as 筆數</span>
+<span class="co"># FROM [sensitive].[dbo].[raw_106pdadecl] a</span>
+<span class="co"># left join fallow2.dbo.phstemp_code as b</span>
+<span class="co"># on a.DCL_CHGCD1 = b.codeSmall</span>
+<span class="co"># group by b.nameBig</span>
+<span class="co"># order by b.nameBig</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>nameBig</th>
+<th>筆數</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>水稻</td>
+<td>9661</td>
+</tr>
+<tr class="even">
+<td>地區特產</td>
+<td>37415</td>
+</tr>
+<tr class="odd">
+<td>契作硬質玉米</td>
+<td>22</td>
+</tr>
+<tr class="even">
+<td>停止補貼</td>
+<td>6349</td>
+</tr>
+<tr class="odd">
+<td>無補貼</td>
+<td>19343</td>
+</tr>
+<tr class="even">
+<td>種植綠肥</td>
+<td>299</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="-aerial-graphic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
