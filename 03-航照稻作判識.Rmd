@@ -1,11 +1,16 @@
 # 航照稻作辨識 (aerial_graphic)
 ***
 
-## 緣起
-* 由農試所提供，此資料為利用航照圖判釋全台稻作的生產位置，整理後會用於繪製全國稻米生產分布圖
-* 負責人：農試所利沛燕專員
+## 背景說明
+* 資料庫設置目的：
+* 此資料庫中，每一列資料皆為判識為水稻的地段地號。
+* 聯絡窗口：農試所利沛燕專員。
 
-## Schema
+## 資料欄位
+* 檔案位置：`Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\航照稻作圖資轉文字檔\`，注意有分1、2期
+* `注意事項`：地號為R之河川地，需特別處理
+
+### 歷年schema
 
 欄位-中文 | 欄位-英文 | 欄位屬性    | 定義
 ----------|-----------|-------------|----------
@@ -13,16 +18,32 @@
 糧食碼    | RICE_CODE | varchar(6)  | 
 內政碼    | MOI_CODE  | varchar(7)  |
 地目      | LNDNO5    | char(1)     | 田、林、旱、牧、建...等
-地號      | LNDNO4    | varchar(6)  | 地號，R開頭為河川地
+地號      | LNDNO4    | varchar(6)  | 地號，`R開頭為河川地`，需另外轉換
 水稻      | RICD      | char(1)     |
 KEYNO     | landNo    | varchar(15) | 15碼代碼，需轉為14碼農委會標準碼
 圖號      | PIC_NO    | char(8)     |
 年度      | SYY       | char(3)     | 民國年
 期別      | SPP       | char(1)     | 期作別
 
+### 資料庫命名邏輯
+- newRICE1021: 將102年1期是河川地轉換完成並新增一欄為`newKEYNO`
+- newRICE1031: 將103年1期是河川地轉換完成並新增一欄為`newKEYNO`
+- newRICE1032: 將103年2期是河川地轉換完成並新增一欄為`newKEYNO`
+- raw_RICE105: 105年1期與2期原始資料
+- raw_RICE106: 106年1期與2期原始資料
+- RICE1021: 102年1期原始資料
+- RICE1022: 102年2期原始資料
+- RICE1031: 103年1期原始資料
+- RICE1031_code: 繪製103年1期稻米生產分布圖的14/15碼地籍轉換
+- RICE1032: 103年2期原始資料
+- RICE1032_code: 繪製103年2期稻米生產分布圖的14/15碼地籍轉換
+- RICE1041: 104年1期原始資料
+- RICE1042: 104年2期原始資料
+- RicePda103_: 不知道是什麼
 
-## 套件匯入
+## 資料處理過程
 
+1. R套件匯入
 ```{r load_package, eval=FALSE}
 setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\航照稻作圖資轉文字檔\\106年")
 library(tidyverse)
@@ -30,12 +51,11 @@ library(readxl) # under tidyverse.
 library(prettydoc) # for beautiful markdown doc.
 ```
 
-## 資料處理
-
+2. 資料處理
 ```{r data_process, eval=FALSE}
-p1 <- read_excel("1061rice_文數字.xlsx")
-p2 <- read_excel("1062rice_文數字.xlsx")
-pf <- rbind(p1, p2)
-names(pf) <- c("AREA", "RICE_CODE", "MOI_CODE", "LNDNO5", "LNDNO4", "RICD", "landNo", "PIC_NO", "SYY", "SPP") # follow last year.
+p1 <- read_excel("1061rice_文數字.xlsx") # import first period data.
+p2 <- read_excel("1062rice_文數字.xlsx") # import second period data.
+pf <- rbind(p1, p2) # combine the 2 period data.
+names(pf) <- c("AREA", "RICE_CODE", "MOI_CODE", "LNDNO5", "LNDNO4", "RICD", "landNo", "PIC_NO", "SYY", "SPP") # follow the schema.
 write.table(pf, "raw_RICE106.txt", sep=",", row.names=F, quote=FALSE) # import into SQL(aerial_graphic.dbo.raw_RICE106)
 ```
