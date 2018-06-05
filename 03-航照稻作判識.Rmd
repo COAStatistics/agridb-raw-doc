@@ -25,7 +25,7 @@ KEYNO     | landNo    | varchar(15) | 15碼代碼，需轉為14碼農委會標�
 年度      | SYY       | char(3)     | 民國年
 期別      | SPP       | char(1)     | 期作別
 
-### 資料庫命名邏輯
+### 資料庫清單
 - newRICE1021: 將102年1期是河川地轉換完成並新增一欄為`newKEYNO`
 - newRICE1031: 將103年1期是河川地轉換完成並新增一欄為`newKEYNO`
 - newRICE1032: 將103年2期是河川地轉換完成並新增一欄為`newKEYNO`
