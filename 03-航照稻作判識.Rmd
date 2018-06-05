@@ -15,13 +15,13 @@
 欄位-中文 | 欄位-英文 | 欄位屬性    | 定義
 ----------|-----------|-------------|----------
 航測面積  | AREA      | float       | 面積(公頃)
-糧食碼    | RICE_CODE | varchar(6)  | 
-內政碼    | MOI_CODE  | varchar(7)  |
+糧食碼    | RICE_CODE | varchar(6)  | 以前的糧食局時代縣市碼+地段碼
+內政碼    | MOI_CODE  | varchar(7)  | 縣市碼+鄉鎮碼+地段碼
 地目      | LNDNO5    | char(1)     | 田、林、旱、牧、建...等
-地號      | LNDNO4    | varchar(6)  | 地號，`R開頭為河川地`，需另外轉換
-水稻      | RICD      | char(1)     |
+地號      | LNDNO4    | varchar(6)  | `地號，R開頭為河川地，需另外轉換`
+水稻      | RICD      | char(1)     | 1為航照判識為水稻，3為現場調查結果為水稻
 KEYNO     | landNo    | varchar(15) | 15碼代碼，需轉為14碼農委會標準碼
-圖號      | PIC_NO    | char(8)     |
+圖號      | PIC_NO    | char(8)     | 農航所依據拍攝範圍發布的1/5000地理資訊
 年度      | SYY       | char(3)     | 民國年
 期別      | SPP       | char(1)     | 期作別
 
