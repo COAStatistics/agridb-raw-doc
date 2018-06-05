@@ -24,8 +24,9 @@ description: "農委會統計室執行之農業統計資料庫說明文件"
 #1. clone from github
 git clone https://github.com/COAStatistics/agridb.git
 
-#2. install R-Studio
-https://www.rstudio.com/products/rstudio/download/
+#2. install R & R-Studio
+R: https://cran.r-project.org/
+RStudio: https://www.rstudio.com/products/rstudio/download/
 
 #3. install and require the packages: bookdown, rmarkdown.
 install.packages("bookdown")
