@@ -65,9 +65,9 @@
 - 103pda_newRD1: 102年完整資料
 - 103pdadecl: 103年資料
 - 104pdadecl: 104年資料
-- 105pdadecl: 105年資料
-- raw_105pdadecl: 
-- raw_106pdadecl: 
+- 105pdadecl: 105年處理資料(`移除地段地號為16碼且中間有R的`、`排除地段地號不為15碼的資料`)
+- raw_105pdadecl: 105年原始資料
+- raw_106pdadecl: 106年原始資料
 
 ## 資料處理過程
 1.R套件匯入
