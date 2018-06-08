@@ -2,24 +2,35 @@
 
 ***
 
-## 緣起
-* 農糧署每年舉辦敏感性作物調查，每年列舉易產銷失衡之作物，拿著PDA下鄉調查
-* 負責人：逢甲楊老師
+## 背景說明
+* 資料庫設置目的
+
+![](https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/d8105ba259b174ff8e72e21adba7452f/%E6%95%8F%E6%84%9F%E6%80%A7%E4%BD%9C%E7%89%A9%E8%AA%BF%E6%9F%A5%E4%BD%9C%E6%A5%AD%E8%AA%AA%E6%98%8E.png "敏感性調查作業說明")
+
+* 歷年調查品項
+![](https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/186c16543fe044cac793828d49122994/%E6%95%8F%E6%84%9F%E6%80%A7%E4%BD%9C%E7%89%A9%E9%A0%85%E7%9B%AE.png "歷年調查品項")
+
+* 聯絡窗口：農糧署劉彥彤技佐。
+
+* 資料索取：逢甲楊老師
+
+## 資料欄位
+* 檔案位置：`Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔\pdadecl(敏感性作物+全鄉性調查)\`
 
 ## Schema
 
 欄位-中文    | 欄位-英文    | 欄位屬性      | 定義
 -------------|--------------|---------------|----------
 土地座落     | landNo       | varchar(16)   | 15碼地段地號
-面積         | DCL_CHGA1    | float         |
-作物代碼     | DCL_CHGCD1   | char(3)       |
+面積         | DCL_CHGA1    | float         | 公頃
+作物代碼     | DCL_CHGCD1   | char(3)       | 參照`phstemp_code`，進行轉換
 分子         | NUM          | numeric(18,0) |
 分母         | DENO         | numeric(18,0) |
 勘查日期     | UPDATE       | char(8)       |
 處別代碼     | PT_ID        | char(2)       |
 鄉鎮代碼     | EID          | char(4)       |
-變更使用面積 | LNDCHRA      | float         |
-土地面積     | LNDARA       | float         |
+變更使用面積 | LNDCHRA      | float         | 公頃
+土地面積     | LNDARA       | float         | 公頃
 狀況         | STATUS       | char(2)       | 0與NA
 河川地註記   | DCL_LNDTYPE  | varchar(2)    | 見下方說明
 作物生長期   | DCL_BRTYP    | varchar(2)    | 見下方說明
@@ -37,6 +48,7 @@
 2    | 河川地
 
 ## 作物生長期
+
 代碼 | 定義 
 -----|------
 1    | 定植期
@@ -48,7 +60,7 @@
 
 ## 套件匯入
 ```{r eval=FALSE}
-setwd("C:\\Users\\so6378-1.NTCOA\\Desktop\\106公務資料檢查\\1070425楊老師\\6敏感作物備份106年")
+setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\清冊檔\\pdadecl(敏感性作物+全鄉性調查)\\106")
 library(tidyverse)
 library(prettydoc) # for beautiful markdown doc.
 library(readxl) # under tidyverse.
@@ -61,52 +73,6 @@ file <- read_excel("6敏感作物備份106年.xlsx") # use readr package under t
 dim(file) # rows: 73089 columns: 18
 names(file) <- c("landNo", "DCL_CHGA1", "DCL_CHGCD1", "NUM", "DENO", "UPDATE", "PT_ID", "EID", "LNDCHRA", "LNDARA", "STATUS", "DCL_LNDTYPE", "DCL_BRTYP", "DCL_TRTYP", "DCL_TRDATE", "UPDTIME", "土地使用區分", "編定使用種類") # follow schema.
 file2 <- file[-which(nchar(file$landNo) !=15),] # remove landNo = M080040808960044
-write.table(file2, "raw_106pdadecl.txt", sep=",", row.names=F, quote=FALSE) # import into SQL(aerial_graphic.dbo.raw_RICE106)
+write.table(file2, "raw_106pdadecl.txt", sep=",", row.names=F, quote=FALSE) # import into SQL(sensitive.dbo.raw_106pdadecl)
 ```
 
-## SQL-匯入
-```{r SQL_import, eval=FALSE}
-# CREATE TABLE [dbo].[raw_106pdadecl] (
-# [landNo] varchar(16),
-# [DCL_CHGA1] float,
-# [DCL_CHGCD1] char(3),
-# [NUM] numeric(18,0),
-# [DENO] numeric(18,0),
-# [UPDATE] char(8),
-# [PT_ID] char(2),
-# [EID] char(4),
-# [LNDCHRA] float,
-# [LNDARA] float,
-# [STATUS] char(2),
-# [DCL_LNDTYPE] varchar(2),
-# [DCL_BRTYP] varchar(2),
-# [DCL_TRTYP] varchar(50),
-# [DCL_TRDATE] varchar(50),
-# [UPDTIME] varchar(50),
-# [土地使用區分] varchar(50),
-# [編定使用種類] varchar(50)
-# )
-```
-
-## SQL-設定index與註解
-```{r SQL_index&note, eval=FALSE}
-
-```
-
-## 資料檢查
-```{r data_inspect, eval=FALSE}
-# SELECT b.nameBig, count(nameBig) as 筆數
-# FROM [sensitive].[dbo].[raw_106pdadecl] a
-# left join fallow2.dbo.phstemp_code as b
-# on a.DCL_CHGCD1 = b.codeSmall
-# group by b.nameBig
-# order by b.nameBig
-```
-nameBig      |	筆數
--------------|------------------
-水稻         |  9661
-地區特產     |	37415
-契作硬質玉米 |	22
-停止補貼     |	6349
-無補貼       |	19343
-種植綠肥     |	299
