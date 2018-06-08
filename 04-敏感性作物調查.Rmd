@@ -3,12 +3,12 @@
 ***
 
 ## 背景說明
-* 資料庫設置目的
+### 資料庫設置目的 {-}
 
-![](https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/d8105ba259b174ff8e72e21adba7452f/%E6%95%8F%E6%84%9F%E6%80%A7%E4%BD%9C%E7%89%A9%E8%AA%BF%E6%9F%A5%E4%BD%9C%E6%A5%AD%E8%AA%AA%E6%98%8E.png "敏感性調查作業說明")
+![](https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/78b5d7c25bb7c70d2d69a687c7868163/instruction.png "")
 
-* 歷年調查品項
-![](https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/186c16543fe044cac793828d49122994/%E6%95%8F%E6%84%9F%E6%80%A7%E4%BD%9C%E7%89%A9%E9%A0%85%E7%9B%AE.png "歷年調查品項")
+### 歷年調查品項 {-}
+![](https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/0c8c020f64aa62fa1842bd794c3762cd/item.png "")
 
 * 聯絡窗口：農糧署劉彥彤技佐。
 
@@ -17,13 +17,13 @@
 ## 資料欄位
 * 檔案位置：`Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔\pdadecl(敏感性作物+全鄉性調查)\`
 
-## Schema
+### 歷年Schema
 
 欄位-中文    | 欄位-英文    | 欄位屬性      | 定義
 -------------|--------------|---------------|----------
 土地座落     | landNo       | varchar(16)   | 15碼地段地號
 面積         | DCL_CHGA1    | float         | 公頃
-作物代碼     | DCL_CHGCD1   | char(3)       | 參照`phstemp_code`，進行轉換
+作物代碼     | DCL_CHGCD1   | char(3)       | 可參照`phstemp_code`，轉換為中文
 分子         | NUM          | numeric(18,0) |
 分母         | DENO         | numeric(18,0) |
 勘查日期     | UPDATE       | char(8)       |
@@ -40,14 +40,14 @@
 土地使用區分 | 土地使用區分 | varchar(50)   | 無使用
 編定使用種類 | 編定使用種類 | varchar(50)   | 無使用
 
-## 河川地註記
+### 河川地註記
 
 代碼 | 定義
 -----|-------
 1    | 地籍
 2    | 河川地
 
-## 作物生長期
+### 作物生長期
 
 代碼 | 定義 
 -----|------
@@ -58,7 +58,19 @@
 5    | 已採收
 6    | 待判
 
-## 套件匯入
+### 資料庫清單
+
+- 101pdadecl: 101年資料
+- 102PDA: 102年不完整資料
+- 103pda_newRD1: 102年完整資料
+- 103pdadecl: 103年資料
+- 104pdadecl: 104年資料
+- 105pdadecl: 105年資料
+- raw_105pdadecl: 
+- raw_106pdadecl: 
+
+## 資料處理過程
+1.R套件匯入
 ```{r eval=FALSE}
 setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\清冊檔\\pdadecl(敏感性作物+全鄉性調查)\\106")
 library(tidyverse)
@@ -67,7 +79,7 @@ library(readxl) # under tidyverse.
 library(tidyverse)
 ```
 
-## 資料處理
+2. 資料處理
 ```{r eval=FALSE}
 file <- read_excel("6敏感作物備份106年.xlsx") # use readr package under tidyverse
 dim(file) # rows: 73089 columns: 18
