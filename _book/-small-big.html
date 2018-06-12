@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="-aerial-graphic.html">
-<link rel="next" href="section-5.html">
+<link rel="prev" href="paddy-procurement.html">
+<link rel="next" href="section-8.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -179,37 +179,71 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-4" class="section level1">
-<h1><span class="header-section-number">4</span> 敏感性作物調查</h1>
+<div id="-small-big" class="section level1">
+<h1><span class="header-section-number">7</span> 小地主大專業農 (small &amp; big)</h1>
 <hr />
-<div id="-1" class="section level2">
-<h2><span class="header-section-number">4.1</span> 背景說明</h2>
-<div id="e8b387e69699e5baabe8a8ade7bdaee79baee79a84" class="section level3 unnumbered">
-<h3>資料庫設置目的</h3>
-<div class="figure">
-<img src="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/78b5d7c25bb7c70d2d69a687c7868163/instruction.png" />
-
-</div>
-</div>
-<div id="e6adb7e5b9b4e8aabfe69fa5e59381e9a085" class="section level3 unnumbered">
-<h3>歷年調查品項</h3>
-<div class="figure">
-<img src="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/0c8c020f64aa62fa1842bd794c3762cd/item.png" />
-
-</div>
+<div id="-2" class="section level2">
+<h2><span class="header-section-number">7.1</span> 背景說明</h2>
 <ul>
-<li><p>聯絡窗口：農糧署劉彥彤技佐。</p></li>
-<li><p>資料索取：逢甲楊老師</p></li>
+<li><p>資料庫設置目的</p></li>
+<li>小地主大專業農，包含有5張表：。</li>
+<li><p>資料格式：<code>年分+新資料表名稱</code></p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>舊資料表名稱(英文)</th>
+<th>新資料表名稱(英文)</th>
+<th>資料表中文</th>
+<th>資料表定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rent</td>
+<td>tenantList</td>
+<td>承租人資料</td>
+<td>承租人資料</td>
+</tr>
+<tr class="even">
+<td>r_farm_temp</td>
+<td>tenantTransfer</td>
+<td>大佃農轉契作補貼</td>
+<td>給佃農的轉契作補貼</td>
+</tr>
+<tr class="odd">
+<td>r_pay</td>
+<td>landlordRent</td>
+<td>小地主出租給付</td>
+<td>給地主的出租給付</td>
+</tr>
+<tr class="even">
+<td>r_paya</td>
+<td>landlordRetire</td>
+<td>離農獎勵</td>
+<td>給地主的離農獎勵</td>
+</tr>
+<tr class="odd">
+<td>r_rent</td>
+<td>tenantFallowRent</td>
+<td>租用農地改善補貼</td>
+<td>給佃農的租用連續休耕地改善補貼</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>聯絡窗口：農糧署許鈺佩技正。</li>
+<li>資料索取：逢甲楊老師。</li>
 </ul>
 </div>
-</div>
-<div id="-1" class="section level2">
-<h2><span class="header-section-number">4.2</span> 資料欄位</h2>
+<div id="-2" class="section level2">
+<h2><span class="header-section-number">7.2</span> 資料欄位</h2>
 <ul>
-<li>檔案位置：<code>Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔\pdadecl(敏感性作物+全鄉性調查)\</code></li>
+<li>檔案位置：<code>Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\航照稻作圖資轉文字檔\</code>，注意有分1、2期</li>
+<li><code>注意事項</code>：地號為R之河川地，需特別處理</li>
 </ul>
-<div id="schema-1" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> 歷年Schema</h3>
+<div id="schema-2" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> 歷年schema</h3>
 <table>
 <thead>
 <tr class="header">
@@ -221,204 +255,105 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </thead>
 <tbody>
 <tr class="odd">
-<td>土地座落</td>
+<td>航測面積</td>
+<td>AREA</td>
+<td>float</td>
+<td>面積(平方公尺)</td>
+</tr>
+<tr class="even">
+<td>糧食碼</td>
+<td>RICE_CODE</td>
+<td>varchar(6)</td>
+<td>以前的糧食局時代縣市碼+地段碼</td>
+</tr>
+<tr class="odd">
+<td>內政碼</td>
+<td>MOI_CODE</td>
+<td>varchar(7)</td>
+<td>縣市碼+鄉鎮碼+地段碼</td>
+</tr>
+<tr class="even">
+<td>地目</td>
+<td>LNDNO5</td>
+<td>char(1)</td>
+<td>田、林、旱、牧、建…等</td>
+</tr>
+<tr class="odd">
+<td>地號</td>
+<td>LNDNO4</td>
+<td>varchar(6)</td>
+<td><code>地號，R開頭為河川地，需另外轉換</code></td>
+</tr>
+<tr class="even">
+<td>水稻</td>
+<td>RICD</td>
+<td>char(1)</td>
+<td>1為航照判識為水稻，3為現場調查結果為水稻</td>
+</tr>
+<tr class="odd">
+<td>KEYNO</td>
 <td>landNo</td>
-<td>varchar(16)</td>
-<td>15碼地段地號</td>
+<td>varchar(15)</td>
+<td>15碼代碼，需轉為14碼農委會標準碼</td>
 </tr>
 <tr class="even">
-<td>面積</td>
-<td>DCL_CHGA1</td>
-<td>float</td>
-<td>公頃</td>
-</tr>
-<tr class="odd">
-<td>作物代碼</td>
-<td>DCL_CHGCD1</td>
-<td>char(3)</td>
-<td>可參照<code>phstemp_code</code>，轉換為中文</td>
-</tr>
-<tr class="even">
-<td>分子</td>
-<td>NUM</td>
-<td>numeric(18,0)</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>分母</td>
-<td>DENO</td>
-<td>numeric(18,0)</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>勘查日期</td>
-<td>UPDATE</td>
+<td>圖號</td>
+<td>PIC_NO</td>
 <td>char(8)</td>
-<td></td>
+<td>農航所依據拍攝範圍發布的1/5000地理資訊</td>
 </tr>
 <tr class="odd">
-<td>處別代碼</td>
-<td>PT_ID</td>
-<td>char(2)</td>
-<td></td>
+<td>年度</td>
+<td>SYY</td>
+<td>char(3)</td>
+<td>民國年</td>
 </tr>
 <tr class="even">
-<td>鄉鎮代碼</td>
-<td>EID</td>
-<td>char(4)</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>變更使用面積</td>
-<td>LNDCHRA</td>
-<td>float</td>
-<td>公頃</td>
-</tr>
-<tr class="even">
-<td>土地面積</td>
-<td>LNDARA</td>
-<td>float</td>
-<td>公頃</td>
-</tr>
-<tr class="odd">
-<td>狀況</td>
-<td>STATUS</td>
-<td>char(2)</td>
-<td>0與NA</td>
-</tr>
-<tr class="even">
-<td>河川地註記</td>
-<td>DCL_LNDTYPE</td>
-<td>varchar(2)</td>
-<td>見下方說明</td>
-</tr>
-<tr class="odd">
-<td>作物生長期</td>
-<td>DCL_BRTYP</td>
-<td>varchar(2)</td>
-<td>見下方說明</td>
-</tr>
-<tr class="even">
-<td>保留1</td>
-<td>DCL_TRTYP</td>
-<td>varchar(50)</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>保留2</td>
-<td>DCL_TRDATE</td>
-<td>varchar(50)</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>異動時間</td>
-<td>UPDTIME</td>
-<td>varchar(50)</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>土地使用區分</td>
-<td>土地使用區分</td>
-<td>varchar(50)</td>
-<td>無使用</td>
-</tr>
-<tr class="even">
-<td>編定使用種類</td>
-<td>編定使用種類</td>
-<td>varchar(50)</td>
-<td>無使用</td>
+<td>期別</td>
+<td>SPP</td>
+<td>char(1)</td>
+<td>期作別</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="section-4.2.2" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> 河川地註記</h3>
-<table>
-<thead>
-<tr class="header">
-<th>代碼</th>
-<th>定義</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>地籍</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>河川地</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="section-4.2.3" class="section level3">
-<h3><span class="header-section-number">4.2.3</span> 作物生長期</h3>
-<table>
-<thead>
-<tr class="header">
-<th>代碼</th>
-<th>定義</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>定植期</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>蓮坐期</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>豎立期</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>結球期</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>已採收</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>待判</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="-1" class="section level3">
-<h3><span class="header-section-number">4.2.4</span> 資料庫清單</h3>
+<div id="-2" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> 資料庫清單</h3>
 <ul>
-<li>101pdadecl: 101年資料</li>
-<li>102PDA: 102年不完整資料</li>
-<li>103pda_newRD1: 102年完整資料</li>
-<li>103pdadecl: 103年資料</li>
-<li>104pdadecl: 104年資料</li>
-<li>105pdadecl: 105年處理資料(<code>移除地段地號為16碼且中間有R的</code>、<code>排除地段地號不為15碼的資料</code>)</li>
-<li>raw_105pdadecl: 105年原始資料</li>
-<li>raw_106pdadecl: 106年原始資料</li>
+<li>newRICE1021: 將102年1期是河川地轉換完成並新增一欄為<code>newKEYNO</code></li>
+<li>newRICE1031: 將103年1期是河川地轉換完成並新增一欄為<code>newKEYNO</code></li>
+<li>newRICE1032: 將103年2期是河川地轉換完成並新增一欄為<code>newKEYNO</code></li>
+<li>raw_RICE105: 105年1期與2期原始資料</li>
+<li>raw_RICE106: 106年1期與2期原始資料</li>
+<li>RICE1021: 102年1期原始資料</li>
+<li>RICE1022: 102年2期原始資料</li>
+<li>RICE1031: 103年1期原始資料</li>
+<li>RICE1031_code: 繪製103年1期稻米生產分布圖的14/15碼地籍轉換</li>
+<li>RICE1032: 103年2期原始資料</li>
+<li>RICE1032_code: 繪製103年2期稻米生產分布圖的14/15碼地籍轉換</li>
+<li>RICE1041: 104年1期原始資料</li>
+<li>RICE1042: 104年2期原始資料</li>
+<li>RicePda103_: 不知道是什麼</li>
 </ul>
 </div>
 </div>
-<div id="-1" class="section level2">
-<h2><span class="header-section-number">4.3</span> 資料處理過程</h2>
-<p>1.R套件匯入</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">清冊檔</span><span class="ch">\\</span><span class="st">pdadecl(敏感性作物+全鄉性調查)</span><span class="ch">\\</span><span class="st">106&quot;</span>)
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(prettydoc) <span class="co"># for beautiful markdown doc.</span>
-<span class="kw">library</span>(readxl) <span class="co"># under tidyverse.</span>
-<span class="kw">library</span>(tidyverse)</code></pre></div>
+<div id="-2" class="section level2">
+<h2><span class="header-section-number">7.3</span> 資料處理過程</h2>
+<ol style="list-style-type: decimal">
+<li>R套件匯入</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">航照稻作圖資轉文字檔</span><span class="ch">\\</span><span class="st">106年&quot;)</span>
+<span class="st">library(tidyverse)</span>
+<span class="st">library(readxl) # under tidyverse.</span>
+<span class="st">library(prettydoc) # for beautiful markdown doc.</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>資料處理</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;6敏感作物備份106年.xlsx&quot;</span>) <span class="co"># use readr package under tidyverse</span>
-<span class="kw">dim</span>(file) <span class="co"># rows: 73089 columns: 18</span>
-<span class="kw">names</span>(file) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;landNo&quot;</span>, <span class="st">&quot;DCL_CHGA1&quot;</span>, <span class="st">&quot;DCL_CHGCD1&quot;</span>, <span class="st">&quot;NUM&quot;</span>, <span class="st">&quot;DENO&quot;</span>, <span class="st">&quot;UPDATE&quot;</span>, <span class="st">&quot;PT_ID&quot;</span>, <span class="st">&quot;EID&quot;</span>, <span class="st">&quot;LNDCHRA&quot;</span>, <span class="st">&quot;LNDARA&quot;</span>, <span class="st">&quot;STATUS&quot;</span>, <span class="st">&quot;DCL_LNDTYPE&quot;</span>, <span class="st">&quot;DCL_BRTYP&quot;</span>, <span class="st">&quot;DCL_TRTYP&quot;</span>, <span class="st">&quot;DCL_TRDATE&quot;</span>, <span class="st">&quot;UPDTIME&quot;</span>, <span class="st">&quot;土地使用區分&quot;</span>, <span class="st">&quot;編定使用種類&quot;</span>) <span class="co"># follow schema.</span>
-file2 &lt;-<span class="st"> </span>file[<span class="op">-</span><span class="kw">which</span>(<span class="kw">nchar</span>(file<span class="op">$</span>landNo) <span class="op">!=</span><span class="dv">15</span>),] <span class="co"># remove landNo = M080040808960044</span>
-<span class="kw">write.table</span>(file2, <span class="st">&quot;raw_106pdadecl.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">quote=</span><span class="ot">FALSE</span>) <span class="co"># import into SQL(sensitive.dbo.raw_106pdadecl)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;1061rice_文數字.xlsx&quot;</span>) <span class="co"># import first period data.</span>
+p2 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;1062rice_文數字.xlsx&quot;</span>) <span class="co"># import second period data.</span>
+pf &lt;-<span class="st"> </span><span class="kw">rbind</span>(p1, p2) <span class="co"># combine the 2 period data.</span>
+<span class="kw">names</span>(pf) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AREA&quot;</span>, <span class="st">&quot;RICE_CODE&quot;</span>, <span class="st">&quot;MOI_CODE&quot;</span>, <span class="st">&quot;LNDNO5&quot;</span>, <span class="st">&quot;LNDNO4&quot;</span>, <span class="st">&quot;RICD&quot;</span>, <span class="st">&quot;landNo&quot;</span>, <span class="st">&quot;PIC_NO&quot;</span>, <span class="st">&quot;SYY&quot;</span>, <span class="st">&quot;SPP&quot;</span>) <span class="co"># follow the schema.</span>
+<span class="kw">write.table</span>(pf, <span class="st">&quot;raw_RICE106.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">quote=</span><span class="ot">FALSE</span>) <span class="co"># import into SQL(aerial_graphic.dbo.raw_RICE106)</span></code></pre></div>
 
 </div>
 </div>
@@ -427,8 +362,8 @@ file2 &lt;-<span class="st"> </span>file[<span class="op">-</span><span class="k
           </div>
         </div>
       </div>
-<a href="-aerial-graphic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="paddy-procurement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

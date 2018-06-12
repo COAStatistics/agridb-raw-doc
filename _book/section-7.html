@@ -150,7 +150,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="section-7.html"><a href="section-7.html#e89995e79086e6b581e7a88b"><i class="fa fa-check"></i>處理流程</a></li>
 <li class="chapter" data-level="" data-path="section-7.html"><a href="section-7.html#e7b590e69e9c"><i class="fa fa-check"></i>結果</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#section-7.2"><i class="fa fa-check"></i><b>7.2</b> 休耕轉作補貼代碼表</a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#---"><i class="fa fa-check"></i><b>7.2</b> 休耕轉作補貼 - 作物代碼表</a><ul>
+<li class="chapter" data-level="" data-path="section-7.html"><a href="section-7.html#-3"><i class="fa fa-check"></i>背景說明</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -175,7 +177,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>這邊放的都是參照資料庫，包含有</p>
 <ol style="list-style-type: decimal">
 <li>內政部地政司<strong>全國段代碼表</strong>整合</li>
-<li>休耕轉作代碼表</li>
+<li>休耕轉作補貼作物代碼表</li>
 </ol>
 <div id="section-7.1" class="section level2">
 <h2><span class="header-section-number">7.1</span> 內政部地政司<strong>全國段代碼</strong>整合</h2>
@@ -238,9 +240,113 @@ code_list &lt;-<span class="st"> </span>code_list[,<span class="kw">c</span>(<sp
 </div>
 </div>
 </div>
-<div id="section-7.2" class="section level2">
-<h2><span class="header-section-number">7.2</span> 休耕轉作補貼代碼表</h2>
+<div id="---" class="section level2">
+<h2><span class="header-section-number">7.2</span> 休耕轉作補貼 - 作物代碼表</h2>
+<div id="-3" class="section level3 unnumbered">
+<h3>背景說明</h3>
+<p>*製作包含作物代碼(細項)、作物中文(細項)、作物代碼(大類)、作物中文(大類)的對照表</p>
+<div id="-1" class="section level4 unnumbered">
+<h4>製作方式</h4>
+<ol style="list-style-type: decimal">
+<li>索取<code>農糧代碼對照表_20180424(楊老師提供).xlsx</code>：每年向楊老師索取休耕轉作補貼清冊後，一併索取，<a href="Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔">檔案位置請點我</a>。</li>
+</ol>
+<ul>
+<li>檔案欄位</li>
+<li><table>
+<thead>
+<tr class="header">
+<th>cdtyp</th>
+<th>cdno</th>
+<th>cdexp</th>
+<th>cdexp2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>各種代碼</td>
+<td>作物代碼(細項3碼)</td>
+<td>作物中文(細項)</td>
+<td>作物代碼(大類1碼)</td>
+</tr>
+</tbody>
+</table></li>
+<li><code>各種代碼說明</code></li>
+<li><table>
+<thead>
+<tr class="header">
+<th>各種代碼</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>縣市碼</td>
+</tr>
+<tr class="even">
+<td>02</td>
+<td>縣市鄉鎮碼</td>
+</tr>
+<tr class="odd">
+<td>05</td>
+<td>7碼地段碼</td>
+</tr>
+<tr class="even">
+<td>08</td>
+<td>作物代碼</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>使用<code>補助作物種類.xlsx</code>：<a href="Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔\補助作物種類.xlsx">檔案位置請點我</a>。</li>
+</ol>
+<ul>
+<li><p>檔案欄位：</p></li>
+<li><table>
+<thead>
+<tr class="header">
+<th>作物代碼(大類1碼)</th>
+<th>作物中文(大類)</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><p>把1與2結合，產出<code>106作物代碼表.xlsx</code>，<a href="Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔\106作物代碼表.xlsx">檔案請點我</a>。</p></li>
+<li><p>結果</p></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>cdtyp</th>
+<th>codeSmall</th>
+<th>nameSmall</th>
+<th>codeBig</th>
+<th>nameBig</th>
+<th>update</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作物代碼</td>
+<td>作物代碼(細項3碼)</td>
+<td>作物中文(細項)</td>
+<td>作物代碼(大類1碼)</td>
+<td>作物中文(大類)</td>
+<td>製表日期</td>
+</tr>
+</tbody>
+</table>
+<div class="figure">
+<img src="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a093a56592649e22f6bebda/88a3c7c0331b68c1bcebcde22dde2674/test.png" title="作物代碼整合結果" />
 
+</div>
+
+</div>
+</div>
 </div>
 </div>
             </section>
