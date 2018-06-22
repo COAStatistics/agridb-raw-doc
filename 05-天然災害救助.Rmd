@@ -1,5 +1,4 @@
 # 天然災害現金救助
-
 ***
 
 ## 背景說明
@@ -9,40 +8,41 @@
 
 ## 資料欄位
 * 檔案位置：`Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\天然災害\106年天然災害救助明細\原始資料`
-* **注意事項**
+
+* 注意事項
   - 本資料每年會索取**兩次**，一次是索取至A年10月之資料(**給主力農家使用**)，一次是A+1年的3月時，索取A年的全年度資料(**資料庫入庫用**)
   - 需清理`所有權人ID`與`地號`，確保資料正確性
 
-### 歷年Schema
+### 歷年Schema {-}
 
 欄位-中文        | 欄位-英文         | 欄位屬性    | 定義
 -----------------|-------------------|-------------|----------
-年度             | year              | 
-災害名稱         | evt_name          | 
-發生日期         | dateTime          | 
-縣市             | county            | 
-鄉鎮             | town              | 
-農戶姓名         | ownerName         | 
-身份證號         | ownerID           | 
-地址             | addr              |
-地段             | landNo7           | 
-地段中文         | landNo7CHN        | 
-地號             | landNo8           | 
-本筆面積(公頃)   | landArea          | 
-權利面積(公頃)   | landRightsArea    | 
-申請者           | appName           |
-申請作物         | applyCrop         | 
-申請面積(公頃)   | applyArea         | 
-申請受害率       | applyDamageRate   | 
-核定核定結果     | approveCheck      | 
-核定作物         | approveCrop       | 
-核定面積(公頃)   | approveArea       | 
-核定受害率       | approveDamageRate | 
-補助方式         | subsidyType       | 
-救助單價(元)     | subsidyStandard   | 
-核定救助金額(元) | subsidyAmount     | 
+年度             | year              | char(3)     | 民國年
+災害名稱         | evt_name          | varchar(50) | 災害名稱
+發生日期         | dateTime          | varchar(50) | 災害發生日期
+縣市             | county            | varchar(6)  | 縣市
+鄉鎮             | town              | varchar(8)  | 鄉鎮
+農戶姓名         | ownerName         | varchar(50) | 所有權人姓名
+身份證號         | ownerID           | char(10)    | 所有權人身分證
+地址             | addr              | text        | 地址
+地段             | landNo7           | varchar(7)  | 地段(7碼)
+地段中文         | landNo7CHN        | varchar(50) | 地段中文
+地號             | landNo8           | varchar(9)  | 地號
+本筆面積         | landArea          | float       | 單位是公頃
+權利面積         | landRightsArea    | float       | 單位是公頃
+申請者           | appName           | varchar(50) | 實際耕作者/申請者
+申請作物         | applyCrop         | varchar(50) | 申請作物
+申請面積         | applyArea         | float       | 單位是公頃
+申請受害率       | applyDamageRate   | varchar(50) | 百分比
+核定結果         | approveCheck      | varchar(50) | 符合；不符
+核定作物         | approveCrop       | varchar(50) | 核定作物
+核定面積         | approveArea       | float       | 單位是公頃
+核定受害率       | approveDamageRate | varchar(50) | 百分比
+補助方式         | subsidyType       | varchar(50) | 現金救助
+救助單價(元)     | subsidyStandard   | float       | 依據現金救助標準給定
+核定救助金額(元) | subsidyAmount     | float       | 救助單價 * 核定面積
 
-### 資料庫清單
+### 資料庫清單 {-}
 
 - 101acdList: 101年天然災害現金救助明細
 - 102acdList: 102年天然災害現金救助明細
@@ -53,8 +53,9 @@
 - 106acdList: 106年天然災害現金救助明細
 - raw_acdlist106: 106年天然災害現金救助明細原始資料
 
+## 資料處理過程
 
-## 套件與匯入
+### 匯入 {-}
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 rm(list=ls())
@@ -67,7 +68,7 @@ colname <- c('year', 'evt_name', 'dateTime','county', 'town', 'ownerName', 'owne
 names(acd) <- colname
 ```
 
-## 檢查欄位最大長度
+### 檢查欄位最大長度 {-}
 > 注意：下列函數必須讓資料為tibble格式才可運作
 
 ```{r eval=FALSE, warning=FALSE, message=FALSE}
@@ -85,14 +86,9 @@ for (i in 1:dim(acd)[2]) {
 table_nchar
 ```
 
-## 資料輸出
+### 資料輸出 {-}
 
 ```{r eval=FALSE}
 setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\天然災害\\106年天然災害救助明細")
 write.table(acd, "raw_acdList106.txt", row.names=F, sep="\t", quote=F)
-```
-
-
-## SQL
-```{r eval=FALSE}
 ```
