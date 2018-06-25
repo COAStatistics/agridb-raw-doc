@@ -49,7 +49,7 @@ library(rmarkdown)
 mkdir docs -- create `docs` folder to host html file.
 
 # 必須具備管理者權限才可執行
-ROBOCOPY "d:/work/02-DB/00DB_book/_book" "d:/work/02-DB/00DB_book/docs" /mir /copyall
+ROBOCOPY "d:/work/02-DB/00DB_book/_book" "d:/work/02-DB/00DB_book/docs" /MIR /COPYALL /IS
 ```
 
 ``` {git}

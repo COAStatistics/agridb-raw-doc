@@ -198,6 +198,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
 <h1>農業統計資料庫說明文件</h1>
 <ul>
+<li><a href="https://coastatistics.github.io/agridb/">成果網址</a></li>
 <li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
 <li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
 </ul>
@@ -223,17 +224,17 @@ RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:
 <ul>
 <li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
 <li>網站跟目錄： <code>/docs</code></li>
-<li><a href="http://google.com">成品網址</a></li>
 </ul>
 </div>
 <div id="bookgit-pages" class="section level3 unnumbered">
 <h3>如何把book放到git pages</h3>
-<pre><code># windows command prompt
+<pre class="git"><code># windows command prompt
 mkdir docs -- create `docs` folder to host html file.
 
 # 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /mir /copyall</code></pre>
-<pre><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
+ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /MIR /COPYALL /IS</code></pre>
+<pre class="git"><code># 查詢git log, 並以簡寫描述commit ID
+git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
 
 </div>
 </div>
