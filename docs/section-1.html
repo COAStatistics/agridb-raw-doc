@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-1.html">
+<link rel="prev" href="index.html">
+<link rel="next" href="section-2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -190,61 +190,48 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">農業統計資料庫說明文件</h1>
-<h4 class="author"><em>SzuWei Chen</em></h4>
-<h4 class="date"><em>2018年5月30日</em></h4>
-</div>
-<div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
-<h1>農業統計資料庫說明文件</h1>
+<div id="section-1" class="section level1">
+<h1><span class="header-section-number">1</span> 前言</h1>
 <ul>
-<li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
+<li>索取的資料皆為去年之資料。</li>
+<li>比如現在是2018(107)年，那麼索取的都是<code>去年</code>2017(106)年的資料。</li>
 </ul>
-<div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
-<h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
+<p>這邊列出所有的資料庫</p>
+<table>
+<thead>
+<tr class="header">
+<th>資料庫中文名</th>
+<th>資料庫英文名</th>
+<th>第幾頁</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>休耕轉作</td>
+<td>DCL+RCD</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>小大</td>
+<td>small &amp; big</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>航照稻作</td>
+<td>aerial_graphic</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 
-<span class="co">#2. install R &amp; R-Studio</span>
-R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
-RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
-
-<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">library</span>(bookdown)
-<span class="kw">library</span>(rmarkdown)</code></pre></div>
-</div>
-<div id="git-page" class="section level2 unnumbered">
-<h2>git page設定</h2>
-<div id="e69599e5adb8e7b6b2e59d80" class="section level3 unnumbered">
-<h3>教學網址</h3>
-<ul>
-<li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
-<li>網站跟目錄： <code>/docs</code></li>
-<li><a href="http://google.com">成品網址</a></li>
-</ul>
-</div>
-<div id="bookgit-pages" class="section level3 unnumbered">
-<h3>如何把book放到git pages</h3>
-<pre><code># windows command prompt
-mkdir docs -- create `docs` folder to host html file.
-
-# 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /mir /copyall</code></pre>
-<pre><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
-
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="-small-big.html">
 
-<link rel="next" href="section-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -190,50 +190,180 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">農業統計資料庫說明文件</h1>
-<h4 class="author"><em>SzuWei Chen</em></h4>
-<h4 class="date"><em>2018年5月30日</em></h4>
-</div>
-<div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
-<h1>農業統計資料庫說明文件</h1>
+<div id="section-8" class="section level1">
+<h1><span class="header-section-number">8</span> 參照資料庫</h1>
+<hr />
+<p>這邊放的都是參照資料庫，包含有</p>
+<ol style="list-style-type: decimal">
+<li>內政部地政司<strong>全國段代碼表</strong>整合</li>
+<li>休耕轉作補貼作物代碼表</li>
+</ol>
+<div id="section-8.1" class="section level2">
+<h2><span class="header-section-number">8.1</span> 內政部地政司<strong>全國段代碼</strong>整合</h2>
+<div id="-4" class="section level3 unnumbered">
+<h3>背景說明</h3>
 <ul>
-<li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
+<li>地段地號的資料格式為14或15碼的英數組合，組合方式為<code>6或7碼的地段代碼</code> + <code>8碼的地號代碼</code>，農委會資訊中心已統一將<code>6+8碼的地段地號格式</code>定為標準的資料交換格式，但是部分單位提供的地段地號資料為7+8碼的組合，因此需要一個對照表能將6+8與7+8的代碼互相轉換。</li>
+<li>本資料庫用於製作全國段代碼表，可用於段代碼6碼與7碼間的轉換，亦可用於段代碼與縣市鄉鎮之碰檔</li>
 </ul>
-<div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
-<h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
-
-<span class="co">#2. install R &amp; R-Studio</span>
-R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
-RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
-
-<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">library</span>(bookdown)
-<span class="kw">library</span>(rmarkdown)</code></pre></div>
-</div>
-<div id="git-page" class="section level2 unnumbered">
-<h2>git page設定</h2>
-<div id="e69599e5adb8e7b6b2e59d80" class="section level3 unnumbered">
-<h3>教學網址</h3>
+<div id="e8a3bde4bd9ce696b9e5bc8f" class="section level4 unnumbered">
+<h4>製作方式</h4>
 <ul>
-<li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
-<li>網站跟目錄： <code>/docs</code></li>
-<li><a href="http://google.com">成品網址</a></li>
+<li>連線至<a href="https://www.land.moi.gov.tw/ngis/chhtml/query1.asp">內政部地政司土地段名查詢系統</a>。</li>
+<li>下載<code>段名代碼表</code>與<code>縣市及鄉鎮市區代碼表快速下載</code>，選擇全國與csv檔，並更名為<code>全國段名代碼表_西元年.csv</code>與<code>全國縣市及鄉鎮市區代碼表_西元年.csv</code>。 <a href="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a093a56592649e22f6bebda/8e5e0745a03470f1596307288f47133a/%E6%95%99%E5%AD%B81.png">截圖</a></li>
+<li>新增欄位地段：將段名代碼表的“段” + “小段”並以“-”相連，需注意若小段為空則只要保存“段”</li>
+<li>新增所區碼：將全國縣市鄉鎮市區代碼表的事務所代碼+補到2位數的鄉鎮市區代碼(1→01, 2→02, 13→13)</li>
+<li><strong>使用所區碼結合段名.csv與鄉鎮市區.csv</strong></li>
+<li>新增6碼段代碼：所區碼前兩碼+補到4位數的代碼(1→0001, 11→0011, 111→0111)</li>
+<li>新增7碼段代碼：縣市代碼+鄉鎮代碼+補到4位數的代碼(1→0001, 11→0011, 111→0111)</li>
+<li>新增最後更新日期：製作更新之當天</li>
+<li>欄位更名：段→大段</li>
+<li>輸出並匯入資料庫</li>
 </ul>
+<blockquote>
+<p>另有使用python介接國土測繪中心API的方式，請參閱 <a href="https://github.com/travishen/sectw">這裡</a></p>
+</blockquote>
 </div>
-<div id="bookgit-pages" class="section level3 unnumbered">
-<h3>如何把book放到git pages</h3>
-<pre><code># windows command prompt
-mkdir docs -- create `docs` folder to host html file.
+</div>
+<div id="e89995e79086e6b581e7a88b" class="section level3 unnumbered">
+<h3>處理流程</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(lubridate)
+<span class="kw">setwd</span>(<span class="st">&quot;D:</span><span class="ch">\\</span><span class="st">sw</span><span class="ch">\\</span><span class="st">00-整合資料庫</span><span class="ch">\\</span><span class="st">00-整合資料庫</span><span class="ch">\\</span><span class="st">10全國段代碼(內政部地政司)&quot;</span>)
+code_list &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">paste0</span>(<span class="st">&quot;全國段名代碼表_&quot;</span>, <span class="kw">year</span>(<span class="kw">Sys.Date</span>()), <span class="st">&quot;.csv&quot;</span>), <span class="dt">header=</span>T, <span class="dt">stringsAsFactors=</span>F)
+country_list &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">paste0</span>(<span class="st">&quot;全國縣市鄉鎮市區代碼表_&quot;</span>, <span class="kw">year</span>(<span class="kw">Sys.Date</span>()), <span class="st">&quot;.csv&quot;</span>), <span class="dt">header=</span>T, <span class="dt">stringsAsFactors=</span>F)
 
-# 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /mir /copyall</code></pre>
-<pre><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
+code_list<span class="op">$</span>縣市代碼 &lt;-<span class="st"> </span><span class="kw">substr</span>(code_list<span class="op">$</span>所區碼, <span class="dv">1</span>, <span class="dv">1</span>) <span class="co"># </span>
+code_list<span class="op">$</span>縣市 &lt;-<span class="st"> </span>country_list<span class="op">$</span>縣市名稱[<span class="kw">match</span>(code_list<span class="op">$</span>縣市代碼, country_list<span class="op">$</span>縣市代碼)]
+code_list<span class="op">$</span>鄉鎮代碼 &lt;-<span class="st"> </span><span class="kw">substr</span>(code_list<span class="op">$</span>所區碼, <span class="dv">3</span>,<span class="dv">4</span>)
+code_list<span class="op">$</span>地段 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(code_list<span class="op">$</span>小段<span class="op">==</span><span class="st">&quot;&quot;</span>, code_list<span class="op">$</span>地段 &lt;-<span class="st"> </span>code_list<span class="op">$</span>段, code_list<span class="op">$</span>地段 &lt;-<span class="st"> </span><span class="kw">paste</span>(code_list<span class="op">$</span>段, code_list<span class="op">$</span>小段, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>))
+
+<span class="co">#Use所區碼 to merge two table, then get the 鄉鎮市區----</span>
+country_list<span class="op">$</span>所區碼 &lt;-<span class="st"> </span><span class="kw">paste0</span>(country_list<span class="op">$</span>事務所代碼, <span class="kw">str_sub</span>(<span class="kw">paste0</span>(<span class="st">&quot;0&quot;</span>, country_list<span class="op">$</span>鄉鎮市區代碼), <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>))
+code_list<span class="op">$</span>鄉鎮市區 &lt;-<span class="st"> </span>country_list<span class="op">$</span>鄉鎮市區名稱[<span class="kw">match</span>(code_list<span class="op">$</span>所區碼, country_list<span class="op">$</span>所區碼)]
+
+<span class="co">#Use所區碼 to merge two table, then get the 鄉鎮市區</span>
+code_list<span class="op">$</span>段代碼_<span class="dv">6</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">substr</span>(code_list<span class="op">$</span>所區碼, <span class="dv">1</span>,<span class="dv">2</span>), <span class="kw">str_sub</span>(<span class="kw">paste0</span>(<span class="st">&quot;000&quot;</span>, code_list<span class="op">$</span>代碼), <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">1</span>))
+code_list<span class="op">$</span>段代碼_<span class="dv">7</span> &lt;-<span class="st"> </span><span class="kw">paste0</span>(code_list<span class="op">$</span>縣市代碼, code_list<span class="op">$</span>鄉鎮代碼, <span class="kw">substr</span>(code_list<span class="op">$</span>段代碼_<span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">6</span>))
+code_list<span class="op">$</span>最後更新日期 &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
+code_list &lt;-<span class="st"> </span>code_list[,<span class="kw">c</span>(<span class="st">&quot;縣市&quot;</span>, <span class="st">&quot;縣市代碼&quot;</span>, <span class="st">&quot;鄉鎮市區&quot;</span>, <span class="st">&quot;鄉鎮代碼&quot;</span>, <span class="st">&quot;地段&quot;</span>, <span class="st">&quot;段&quot;</span>, <span class="st">&quot;小段&quot;</span>, <span class="st">&quot;代碼&quot;</span>, <span class="st">&quot;所區碼&quot;</span>, <span class="st">&quot;段代碼_6&quot;</span>, <span class="st">&quot;段代碼_7&quot;</span>, <span class="st">&quot;備註&quot;</span>, <span class="st">&quot;最後更新日期&quot;</span>)] <span class="co">#rearrange column</span>
+<span class="kw">names</span>(code_list) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;縣市&quot;</span>, <span class="st">&quot;縣市代碼&quot;</span>, <span class="st">&quot;鄉鎮市區&quot;</span>, , <span class="st">&quot;鄉鎮代碼&quot;</span>, <span class="st">&quot;地段&quot;</span>, <span class="st">&quot;大段&quot;</span>, <span class="st">&quot;小段&quot;</span>, <span class="st">&quot;代碼&quot;</span>, <span class="st">&quot;所區碼&quot;</span>, <span class="st">&quot;段代碼6碼&quot;</span>, <span class="st">&quot;段代碼7碼&quot;</span>, <span class="st">&quot;備註&quot;</span>, <span class="st">&quot;最後更新日期&quot;</span>)
+<span class="kw">write.csv</span>(code_list, <span class="st">&quot;106整合全國地段代碼表.csv&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">quote=</span>F) <span class="co"># output to [ReferenceDB].[dbo].[106_landCode]</span></code></pre></div>
+</div>
+<div id="e7b590e69e9c" class="section level3 unnumbered">
+<h3>結果</h3>
+<div class="figure">
+<img src="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a093a56592649e22f6bebda/b7e748c98dd30f4504712d2227244494/test.png" title="全國段代碼表" />
+
+</div>
+</div>
+</div>
+<div id="---" class="section level2">
+<h2><span class="header-section-number">8.2</span> 休耕轉作補貼 - 作物代碼表</h2>
+<div id="-5" class="section level3 unnumbered">
+<h3>背景說明</h3>
+<p>*製作包含作物代碼(細項)、作物中文(細項)、作物代碼(大類)、作物中文(大類)的對照表</p>
+</div>
+<div id="-1" class="section level3 unnumbered">
+<h3>製作方式</h3>
+<ol style="list-style-type: decimal">
+<li>索取<code>農糧代碼對照表_20180424(楊老師提供).xlsx</code>：每年向楊老師索取休耕轉作補貼清冊後，一併索取，<a href="Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔">檔案位置請點我</a>。</li>
+</ol>
+<ul>
+<li>檔案欄位</li>
+<li><table>
+<thead>
+<tr class="header">
+<th>cdtyp</th>
+<th>cdno</th>
+<th>cdexp</th>
+<th>cdexp2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>各種代碼</td>
+<td>作物代碼(細項3碼)</td>
+<td>作物中文(細項)</td>
+<td>作物代碼(大類1碼)</td>
+</tr>
+</tbody>
+</table></li>
+<li><code>各種代碼說明</code></li>
+<li><table>
+<thead>
+<tr class="header">
+<th>各種代碼</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>縣市碼</td>
+</tr>
+<tr class="even">
+<td>02</td>
+<td>縣市鄉鎮碼</td>
+</tr>
+<tr class="odd">
+<td>05</td>
+<td>7碼地段碼</td>
+</tr>
+<tr class="even">
+<td>08</td>
+<td>作物代碼</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>使用<code>補助作物種類.xlsx</code>：<a href="Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔\補助作物種類.xlsx">檔案位置請點我</a>。</li>
+</ol>
+<ul>
+<li><p>檔案欄位：</p></li>
+<li><table>
+<thead>
+<tr class="header">
+<th>作物代碼(大類1碼)</th>
+<th>作物中文(大類)</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><p>把1與2結合，產出<code>106作物代碼表.xlsx</code>，<a href="Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔\106作物代碼表.xlsx">檔案請點我</a>。</p></li>
+<li><p>結果</p></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>cdtyp</th>
+<th>codeSmall</th>
+<th>nameSmall</th>
+<th>codeBig</th>
+<th>nameBig</th>
+<th>update</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作物代碼</td>
+<td>作物代碼(細項3碼)</td>
+<td>作物中文(細項)</td>
+<td>作物代碼(大類1碼)</td>
+<td>作物中文(大類)</td>
+<td>製表日期</td>
+</tr>
+</tbody>
+</table>
+<div class="figure">
+<img src="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a093a56592649e22f6bebda/88a3c7c0331b68c1bcebcde22dde2674/test.png" title="作物代碼整合結果" />
+
+</div>
 
 </div>
 </div>
@@ -243,8 +373,8 @@ ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book
           </div>
         </div>
       </div>
+<a href="-small-big.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

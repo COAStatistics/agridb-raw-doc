@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-1.html">
+<link rel="prev" href="section-5.html">
+<link rel="next" href="-small-big.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -190,52 +190,426 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">農業統計資料庫說明文件</h1>
-<h4 class="author"><em>SzuWei Chen</em></h4>
-<h4 class="date"><em>2018年5月30日</em></h4>
-</div>
-<div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
-<h1>農業統計資料庫說明文件</h1>
+<div id="paddy-procurement" class="section level1">
+<h1><span class="header-section-number">6</span> 稻穀收購清冊(paddy procurement)</h1>
+<hr />
+<div id="section-6.1" class="section level2">
+<h2><span class="header-section-number">6.1</span> 緣起</h2>
 <ul>
-<li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
-</ul>
-<div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
-<h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
-
-<span class="co">#2. install R &amp; R-Studio</span>
-R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
-RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
-
-<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">library</span>(bookdown)
-<span class="kw">library</span>(rmarkdown)</code></pre></div>
-</div>
-<div id="git-page" class="section level2 unnumbered">
-<h2>git page設定</h2>
-<div id="e69599e5adb8e7b6b2e59d80" class="section level3 unnumbered">
-<h3>教學網址</h3>
-<ul>
-<li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
-<li>網站跟目錄： <code>/docs</code></li>
-<li><a href="http://google.com">成品網址</a></li>
+<li>繳交公糧之資料</li>
+<li>負責人：逢甲大學楊老師</li>
 </ul>
 </div>
-<div id="bookgit-pages" class="section level3 unnumbered">
-<h3>如何把book放到git pages</h3>
-<pre><code># windows command prompt
-mkdir docs -- create `docs` folder to host html file.
-
-# 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /mir /copyall</code></pre>
-<pre><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
-
+<div id="schema-4" class="section level2">
+<h2><span class="header-section-number">6.2</span> Schema</h2>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>年度</td>
+<td>SYY</td>
+<td>char(3)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>期別</td>
+<td>SPP</td>
+<td>char(1)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>繳穀地代號</td>
+<td>PH_LOCCODE</td>
+<td>char(4)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>繳穀地縣市</td>
+<td>PT_ID</td>
+<td>char(3)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>繳穀地鄉鎮</td>
+<td>EID</td>
+<td>varchar(6)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>繳穀地</td>
+<td>PH_PLACE</td>
+<td>varchar(17)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>農戶檔號</td>
+<td>PH_PSTNO</td>
+<td>varchar(9)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>農戶證號</strong></td>
+<td><strong>appID</strong></td>
+<td><strong>char(10)</strong></td>
+<td><strong>主鍵：身分證字號</strong></td>
+</tr>
+<tr class="odd">
+<td>收購日期</td>
+<td>PH_DTA</td>
+<td>char(7)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>收購時間</td>
+<td>PH_TIME</td>
+<td>char(4)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>含車重</td>
+<td>PH_WAMT</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>空車重</td>
+<td>PH_WDCMT</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>計畫濕穀收購</td>
+<td>PH_RMT11</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>計畫乾穀收購</td>
+<td>PH_RMT12</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>輔導濕穀收購</td>
+<td>PH_RMT31</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>輔導乾穀收購</td>
+<td>PH_RMT32</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>餘糧濕穀收購</td>
+<td>PH_RMT41</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>餘糧乾穀收購</td>
+<td>PH_RMT42</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>良質米濕穀收購</td>
+<td>PH_AMT51</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>良質米乾穀收購</td>
+<td>PH_AMT52</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>自營糧濕穀收購</td>
+<td>PH_AMT71</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>自營糧乾穀收購</td>
+<td>PH_AMT72</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>濕穀寄倉</td>
+<td>PH_AM1</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>乾穀寄倉</td>
+<td>PH_AM2</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>聯單編號</td>
+<td>PH_SEQNO</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>收購次數</td>
+<td>PH_SEQTM</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>稻穀類型</td>
+<td>PH_KIND</td>
+<td>char(2)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>補助款</td>
+<td>PH_HTOT</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>應付款</td>
+<td>PH_DTOT</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>實存金額</td>
+<td>PH_MONEY</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>自營價款</td>
+<td>PH_SMONEY</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>公糧烘乾費</td>
+<td>PH_DRYM</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>自營烘乾費</td>
+<td>PH_SDRYM</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>含水率</td>
+<td>PH_RATE</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>自營扣款</td>
+<td>PH_SDCNT</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>農會補助費</td>
+<td>PH_HLPF</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>包袋費</td>
+<td>PH_PCKF</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>代扣運費</td>
+<td>PH_TRSF</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>包袋費扣項</td>
+<td>PH_OTHF</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>進倉補助費</td>
+<td>PH_STOF</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>補助運費</td>
+<td>PH_HTRSF</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>入倉裝袋費</td>
+<td>PH_PSTOF</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>自營稻穀單價</td>
+<td>PH_GO71</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>溢繳稻穀價差</td>
+<td>PH_DED1</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>計畫收購金額</td>
+<td>PH_RMT12_MONEY</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>輔導收購金額</td>
+<td>PH_RMT32_MONEY</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>餘糧收購金額</td>
+<td>PH_RMT42_MONEY</td>
+<td>numeric</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>建立人</td>
+<td>CREATEID</td>
+<td>char(11)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>建立日期</td>
+<td>CREATETIME</td>
+<td>smalldatetime</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>異動人</td>
+<td>UPDID</td>
+<td>char(11)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>異動日期</td>
+<td>UPDTIME</td>
+<td>smalldatetime</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
+<div id="section-6.3" class="section level2">
+<h2><span class="header-section-number">6.3</span> 套件匯入與資料處理</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#rm(list=ls())</span>
+<span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">收購</span><span class="ch">\\</span><span class="st">106PHSAMT&quot;</span>)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(readxl) <span class="co"># under tidyverse.</span>
+<span class="kw">library</span>(prettydoc) <span class="co"># for beautiful markdown doc.</span>
+p1 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;106年1期收購檔備份.xlsx&quot;</span>)
+p2 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;106年2期收購檔備份.xlsx&quot;</span>)
+pf &lt;-<span class="st"> </span><span class="kw">rbind</span>(p1, p2)
+<span class="kw">names</span>(pf) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SYY&quot;</span>, <span class="st">&quot;SPP&quot;</span>, <span class="st">&quot;PH_LOCCODE&quot;</span>, <span class="st">&quot;PT_ID&quot;</span>, <span class="st">&quot;EID&quot;</span>, <span class="st">&quot;PH_PLACE&quot;</span>, <span class="st">&quot;PH_PSTNO&quot;</span>, <span class="st">&quot;appID&quot;</span>, <span class="st">&quot;PH_DTA&quot;</span>, <span class="st">&quot;PH_TIME&quot;</span>, <span class="st">&quot;PH_WAMT&quot;</span>, <span class="st">&quot;PH_CMT&quot;</span>, <span class="st">&quot;PH_RMT11&quot;</span>, <span class="st">&quot;PH_RMT12&quot;</span>, <span class="st">&quot;PH_RMT31&quot;</span>, <span class="st">&quot;PH_RMT32&quot;</span>, <span class="st">&quot;PH_RMT41&quot;</span>, <span class="st">&quot;PH_RMT42&quot;</span>, <span class="st">&quot;PH_AMT51&quot;</span>, <span class="st">&quot;PH_AMT52&quot;</span>, <span class="st">&quot;PH_AMT71&quot;</span>, <span class="st">&quot;PH_AMT72&quot;</span>, <span class="st">&quot;PH_AM1&quot;</span>, <span class="st">&quot;PH_AM2&quot;</span>, <span class="st">&quot;PH_SEQNO&quot;</span>, <span class="st">&quot;PH_SEQTM&quot;</span>, <span class="st">&quot;PH_KIND&quot;</span>, <span class="st">&quot;PH_HTOT&quot;</span>, <span class="st">&quot;PH_DTOT&quot;</span>, <span class="st">&quot;PH_MONEY&quot;</span>, <span class="st">&quot;PH_SMONEY&quot;</span>, <span class="st">&quot;PH_DRYM&quot;</span>, <span class="st">&quot;PH_SDRYM&quot;</span>, <span class="st">&quot;PH_RATE&quot;</span>, <span class="st">&quot;PH_SDCNT&quot;</span>, <span class="st">&quot;PH_HLPF&quot;</span>, <span class="st">&quot;PH_PCKF&quot;</span>, <span class="st">&quot;PH_TRSF&quot;</span>, <span class="st">&quot;PH_OTHF&quot;</span>, <span class="st">&quot;PH_STOF&quot;</span>, <span class="st">&quot;PH_HTRSF&quot;</span>, <span class="st">&quot;PH_PSTOF&quot;</span>, <span class="st">&quot;PH_GO71&quot;</span>, <span class="st">&quot;PH_DED1&quot;</span>, <span class="st">&quot;PH_RMT12_MONEY&quot;</span>, <span class="st">&quot;PH_RMT32_MONEY&quot;</span>, <span class="st">&quot;PH_RMT42_MONEY&quot;</span>, <span class="st">&quot;CREATEID&quot;</span>, <span class="st">&quot;CREATETIME&quot;</span>, <span class="st">&quot;UPDID&quot;</span>, <span class="st">&quot;UPDTIME&quot;</span>)
+<span class="co"># PH_LOCCODE：繳穀地代號 → 自行命名</span>
+<span class="co"># PH_PLACE：繳穀地 → 自行命名</span>
+<span class="co"># PH_WDCMT: 對照最原始的schema只對的到濕穀空車重與乾穀空車重，省略為PH_CMT → 自行命名</span></code></pre></div>
+</div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">6.4</span> 檢查欄位最大長度</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">index &lt;-<span class="st"> </span><span class="dv">1</span>
+max_nchar &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">max</span>(<span class="kw">nchar</span>(x))}
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">dim</span>(pf)[<span class="dv">2</span>]) {
+  temp &lt;-<span class="st"> </span>pf[,i]
+  temp &lt;-<span class="st"> </span><span class="kw">apply</span>(temp, <span class="dv">2</span>, max_nchar)
+  <span class="cf">if</span> (index <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) {
+    table_nchar &lt;-<span class="st"> </span>temp
+    index &lt;-<span class="st"> </span><span class="dv">0</span>
+  } <span class="cf">else</span> table_nchar &lt;-<span class="st"> </span><span class="kw">c</span>(table_nchar, temp)
+}
+table_nchar</code></pre></div>
+</div>
+<div id="sql" class="section level2">
+<h2><span class="header-section-number">6.5</span> SQL匯入</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># CREATE TABLE [dbo].[raw_106phsamt] (</span>
+<span class="co"># [SYY] char(3),</span>
+<span class="co"># [SPP] char(1),</span>
+<span class="co"># [PH_LOCCODE] char(4),</span>
+<span class="co"># [PT_ID] char(6),</span>
+<span class="co"># [EID] varchar(12),</span>
+<span class="co"># [PH_PLACE] varchar(34),</span>
+<span class="co"># [PH_PSTNO] varchar(9),</span>
+<span class="co"># [appID] char(10),</span>
+<span class="co"># [PH_DTA] char(7),</span>
+<span class="co"># [PH_TIME] char(4),</span>
+<span class="co"># [PH_WAMT] int,</span>
+<span class="co"># [PH_CMT] int,</span>
+<span class="co"># [PH_RMT11] int,</span>
+<span class="co"># [PH_RMT12] int,</span>
+<span class="co"># [PH_RMT31] int,</span>
+<span class="co"># [PH_RMT32] int,</span>
+<span class="co"># [PH_RMT41] int,</span>
+<span class="co"># [PH_RMT42] int,</span>
+<span class="co"># [PH_AMT51] int,</span>
+<span class="co"># [PH_AMT52] int,</span>
+<span class="co"># [PH_AMT71] int,</span>
+<span class="co"># [PH_AMT72] int,</span>
+<span class="co"># [PH_AM1] int,</span>
+<span class="co"># [PH_AM2] int,</span>
+<span class="co"># [PH_SEQNO] int,</span>
+<span class="co"># [PH_SEQTM] int,</span>
+<span class="co"># [PH_KIND] char(4),</span>
+<span class="co"># [PH_HTOT] int,</span>
+<span class="co"># [PH_DTOT] int,</span>
+<span class="co"># [PH_MONEY] int,</span>
+<span class="co"># [PH_SMONEY] int,</span>
+<span class="co"># [PH_DRYM] int,</span>
+<span class="co"># [PH_SDRYM] int,</span>
+<span class="co"># [PH_RATE] int,</span>
+<span class="co"># [PH_SDCNT] int,</span>
+<span class="co"># [PH_HLPF] int,</span>
+<span class="co"># [PH_PCKF] int,</span>
+<span class="co"># [PH_TRSF] int,</span>
+<span class="co"># [PH_OTHF] int,</span>
+<span class="co"># [PH_STOF] int,</span>
+<span class="co"># [PH_HTRSF] int,</span>
+<span class="co"># [PH_PSTOF] int,</span>
+<span class="co"># [PH_GO71] float,</span>
+<span class="co"># [PH_DED1] int,</span>
+<span class="co"># [PH_RMT12_MONEY] int,</span>
+<span class="co"># [PH_RMT32_MONEY] int,</span>
+<span class="co"># [PH_RMT42_MONEY] int,</span>
+<span class="co"># [CREATEID] char(11),</span>
+<span class="co"># [CREATETIME] smalldatetime,</span>
+<span class="co"># [UPDID] char(11),</span>
+<span class="co"># [UPDTIME] smalldatetime</span>
+<span class="co"># )</span></code></pre></div>
+</div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">6.6</span> 資料輸出</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(pf, <span class="st">&quot;raw_106phsamt.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">row.names =</span> F, <span class="dt">quote =</span> <span class="ot">FALSE</span>)</code></pre></div>
+
 </div>
 </div>
             </section>
@@ -243,8 +617,8 @@ ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book
           </div>
         </div>
       </div>
-
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="-small-big.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-1.html">
+<link rel="prev" href="section-4.html">
+<link rel="next" href="paddy-procurement.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -190,50 +190,233 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">農業統計資料庫說明文件</h1>
-<h4 class="author"><em>SzuWei Chen</em></h4>
-<h4 class="date"><em>2018年5月30日</em></h4>
-</div>
-<div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
-<h1>農業統計資料庫說明文件</h1>
+<div id="section-5" class="section level1">
+<h1><span class="header-section-number">5</span> 天然災害現金救助</h1>
+<hr />
+<div id="-2" class="section level2">
+<h2><span class="header-section-number">5.1</span> 背景說明</h2>
 <ul>
-<li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
-</ul>
-<div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
-<h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
-
-<span class="co">#2. install R &amp; R-Studio</span>
-R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
-RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
-
-<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">library</span>(bookdown)
-<span class="kw">library</span>(rmarkdown)</code></pre></div>
-</div>
-<div id="git-page" class="section level2 unnumbered">
-<h2>git page設定</h2>
-<div id="e69599e5adb8e7b6b2e59d80" class="section level3 unnumbered">
-<h3>教學網址</h3>
-<ul>
-<li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
-<li>網站跟目錄： <code>/docs</code></li>
-<li><a href="http://google.com">成品網址</a></li>
+<li>依據農業發展條例第60條第2項規定，天然災害補貼辦法包含<code>現金救助</code>、<code>補助(保險)</code>與<code>低利貸款</code>三種</li>
+<li>本室只負責索取現金救助的部分</li>
+<li>本業務由農糧署白旭凱專員負責</li>
 </ul>
 </div>
-<div id="bookgit-pages" class="section level3 unnumbered">
-<h3>如何把book放到git pages</h3>
-<pre><code># windows command prompt
-mkdir docs -- create `docs` folder to host html file.
-
-# 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /mir /copyall</code></pre>
-<pre><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
+<div id="-2" class="section level2">
+<h2><span class="header-section-number">5.2</span> 資料欄位</h2>
+<ul>
+<li><p>檔案位置：<code>Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\天然災害\106年天然災害救助明細\原始資料</code></p></li>
+<li>注意事項</li>
+<li>本資料每年會索取<strong>兩次</strong>，一次是索取至A年10月之資料(<strong>給主力農家使用</strong>)，一次是A+1年的3月時，索取A年的全年度資料(<strong>資料庫入庫用</strong>)</li>
+<li><p>需清理<code>所有權人ID</code>與<code>地號</code>，確保資料正確性</p></li>
+</ul>
+<div id="schema-3" class="section level3 unnumbered">
+<h3>歷年Schema</h3>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>年度</td>
+<td>year</td>
+<td>char(3)</td>
+<td>民國年</td>
+</tr>
+<tr class="even">
+<td>災害名稱</td>
+<td>evt_name</td>
+<td>varchar(50)</td>
+<td>災害名稱</td>
+</tr>
+<tr class="odd">
+<td>發生日期</td>
+<td>dateTime</td>
+<td>varchar(50)</td>
+<td>災害發生日期</td>
+</tr>
+<tr class="even">
+<td>縣市</td>
+<td>county</td>
+<td>varchar(6)</td>
+<td>縣市</td>
+</tr>
+<tr class="odd">
+<td>鄉鎮</td>
+<td>town</td>
+<td>varchar(8)</td>
+<td>鄉鎮</td>
+</tr>
+<tr class="even">
+<td>農戶姓名</td>
+<td>ownerName</td>
+<td>varchar(50)</td>
+<td>所有權人姓名</td>
+</tr>
+<tr class="odd">
+<td>身份證號</td>
+<td>ownerID</td>
+<td>char(10)</td>
+<td>所有權人身分證</td>
+</tr>
+<tr class="even">
+<td>地址</td>
+<td>addr</td>
+<td>text</td>
+<td>地址</td>
+</tr>
+<tr class="odd">
+<td>地段</td>
+<td>landNo7</td>
+<td>varchar(7)</td>
+<td>地段(7碼)</td>
+</tr>
+<tr class="even">
+<td>地段中文</td>
+<td>landNo7CHN</td>
+<td>varchar(50)</td>
+<td>地段中文</td>
+</tr>
+<tr class="odd">
+<td>地號</td>
+<td>landNo8</td>
+<td>varchar(9)</td>
+<td>地號</td>
+</tr>
+<tr class="even">
+<td>本筆面積</td>
+<td>landArea</td>
+<td>float</td>
+<td>單位是公頃</td>
+</tr>
+<tr class="odd">
+<td>權利面積</td>
+<td>landRightsArea</td>
+<td>float</td>
+<td>單位是公頃</td>
+</tr>
+<tr class="even">
+<td>申請者</td>
+<td>appName</td>
+<td>varchar(50)</td>
+<td>實際耕作者/申請者</td>
+</tr>
+<tr class="odd">
+<td>申請作物</td>
+<td>applyCrop</td>
+<td>varchar(50)</td>
+<td>申請作物</td>
+</tr>
+<tr class="even">
+<td>申請面積</td>
+<td>applyArea</td>
+<td>float</td>
+<td>單位是公頃</td>
+</tr>
+<tr class="odd">
+<td>申請受害率</td>
+<td>applyDamageRate</td>
+<td>varchar(50)</td>
+<td>百分比</td>
+</tr>
+<tr class="even">
+<td>核定結果</td>
+<td>approveCheck</td>
+<td>varchar(50)</td>
+<td>符合；不符</td>
+</tr>
+<tr class="odd">
+<td>核定作物</td>
+<td>approveCrop</td>
+<td>varchar(50)</td>
+<td>核定作物</td>
+</tr>
+<tr class="even">
+<td>核定面積</td>
+<td>approveArea</td>
+<td>float</td>
+<td>單位是公頃</td>
+</tr>
+<tr class="odd">
+<td>核定受害率</td>
+<td>approveDamageRate</td>
+<td>varchar(50)</td>
+<td>百分比</td>
+</tr>
+<tr class="even">
+<td>補助方式</td>
+<td>subsidyType</td>
+<td>varchar(50)</td>
+<td>現金救助</td>
+</tr>
+<tr class="odd">
+<td>救助單價(元)</td>
+<td>subsidyStandard</td>
+<td>float</td>
+<td>依據現金救助標準給定</td>
+</tr>
+<tr class="even">
+<td>核定救助金額(元)</td>
+<td>subsidyAmount</td>
+<td>float</td>
+<td>救助單價 * 核定面積</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="-2" class="section level3 unnumbered">
+<h3>資料庫清單</h3>
+<ul>
+<li>101acdList: 101年天然災害現金救助明細</li>
+<li>102acdList: 102年天然災害現金救助明細</li>
+<li>103acdList: 103年天然災害現金救助明細</li>
+<li>104acdList: 104年天然災害現金救助明細</li>
+<li>105acdList: 105年天然災害現金救助明細</li>
+<li>105acdList_farmerSurvey: 105年整理過的天然災害現金救助明細，方便主力農家調查使用</li>
+<li>106acdList: 106年天然災害現金救助明細</li>
+<li>raw_acdlist106: 106年天然災害現金救助明細原始資料</li>
+</ul>
+</div>
+</div>
+<div id="-2" class="section level2">
+<h2><span class="header-section-number">5.3</span> 資料處理過程</h2>
+<div id="e58cafe585a5" class="section level3 unnumbered">
+<h3>匯入</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(readxl) <span class="co"># under tidyverse.</span>
+<span class="kw">library</span>(prettydoc) <span class="co"># for beautiful markdown doc.</span>
+<span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">天然災害</span><span class="ch">\\</span><span class="st">106年天然災害救助明細</span><span class="ch">\\</span><span class="st">原始資料&quot;</span>)
+acd &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;acdAllList106.txt&quot;</span>, <span class="dt">header=</span>F)
+colname &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;year&#39;</span>, <span class="st">&#39;evt_name&#39;</span>, <span class="st">&#39;dateTime&#39;</span>,<span class="st">&#39;county&#39;</span>, <span class="st">&#39;town&#39;</span>, <span class="st">&#39;ownerName&#39;</span>, <span class="st">&#39;ownerID&#39;</span>, <span class="st">&#39;addr&#39;</span>, <span class="st">&#39;landNo7&#39;</span>, <span class="st">&#39;landNo7CHN&#39;</span>, <span class="st">&#39;landNo8&#39;</span>, <span class="st">&#39;landArea&#39;</span>, <span class="st">&#39;landRightsArea&#39;</span>, <span class="st">&quot;appName&quot;</span>, <span class="st">&#39;applyCrop&#39;</span>, <span class="st">&#39;applyArea&#39;</span>, <span class="st">&#39;applyDamageRate&#39;</span>, <span class="st">&#39;approveCheck&#39;</span>, <span class="st">&#39;approveCrop&#39;</span>, <span class="st">&#39;approveArea&#39;</span>, <span class="st">&#39;approveDamageRate&#39;</span>, <span class="st">&#39;subsidyType&#39;</span>, <span class="st">&#39;subsidyStandard&#39;</span>, <span class="st">&#39;subsidyAmount&#39;</span>)
+<span class="kw">names</span>(acd) &lt;-<span class="st"> </span>colname</code></pre></div>
+</div>
+<div id="e6aaa2e69fa5e6ac84e4bd8de69c80e5a4a7e995b7e5baa6" class="section level3 unnumbered">
+<h3>檢查欄位最大長度</h3>
+<blockquote>
+<p>注意：下列函數必須讓資料為tibble格式才可運作</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acd &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(acd)
+index &lt;-<span class="st"> </span><span class="dv">1</span>
+max_nchar &lt;-<span class="st"> </span><span class="cf">function</span>(x) {<span class="kw">max</span>(<span class="kw">nchar</span>(x))}
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">dim</span>(acd)[<span class="dv">2</span>]) {
+  temp &lt;-<span class="st"> </span>acd[,i]
+  temp &lt;-<span class="st"> </span><span class="kw">apply</span>(temp, <span class="dv">2</span>, max_nchar)
+  <span class="cf">if</span> (index <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) {
+    table_nchar &lt;-<span class="st"> </span>temp
+    index &lt;-<span class="st"> </span><span class="dv">0</span>
+  } <span class="cf">else</span> table_nchar &lt;-<span class="st"> </span><span class="kw">c</span>(table_nchar, temp)
+}
+table_nchar</code></pre></div>
+</div>
+<div id="e8b387e69699e8bcb8e587ba" class="section level3 unnumbered">
+<h3>資料輸出</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">天然災害</span><span class="ch">\\</span><span class="st">106年天然災害救助明細&quot;</span>)
+<span class="kw">write.table</span>(acd, <span class="st">&quot;raw_acdList106.txt&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">quote=</span>F)</code></pre></div>
 
 </div>
 </div>
@@ -243,8 +426,8 @@ ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book
           </div>
         </div>
       </div>
-
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="paddy-procurement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

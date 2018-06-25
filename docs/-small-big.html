@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-1.html">
+<link rel="prev" href="paddy-procurement.html">
+<link rel="next" href="section-8.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -190,52 +190,284 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">農業統計資料庫說明文件</h1>
-<h4 class="author"><em>SzuWei Chen</em></h4>
-<h4 class="date"><em>2018年5月30日</em></h4>
-</div>
-<div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
-<h1>農業統計資料庫說明文件</h1>
+<div id="-small-big" class="section level1">
+<h1><span class="header-section-number">7</span> 小地主大專業農 (small &amp; big)</h1>
+<hr />
+<div id="-3" class="section level2">
+<h2><span class="header-section-number">7.1</span> 背景說明</h2>
 <ul>
-<li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
-</ul>
-<div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
-<h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
-
-<span class="co">#2. install R &amp; R-Studio</span>
-R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
-RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
-
-<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">library</span>(bookdown)
-<span class="kw">library</span>(rmarkdown)</code></pre></div>
-</div>
-<div id="git-page" class="section level2 unnumbered">
-<h2>git page設定</h2>
-<div id="e69599e5adb8e7b6b2e59d80" class="section level3 unnumbered">
-<h3>教學網址</h3>
+<li><p>資料庫設置目的</p></li>
+<li>小地主大專業農，包含有5張表：
 <ul>
-<li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
-<li>網站跟目錄： <code>/docs</code></li>
-<li><a href="http://google.com">成品網址</a></li>
+<li>承租人資料</li>
+<li>大佃農轉氣作補貼</li>
+<li>小地主出租給付</li>
+<li>小地主離農獎勵</li>
+<li>租用農地改善補貼</li>
+</ul></li>
+<li><p>資料格式：<code>年分+新資料表名稱</code></p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>舊資料表名稱(英文)</th>
+<th>新資料表名稱(英文)</th>
+<th>資料表中文</th>
+<th>資料表定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rent</td>
+<td>tenantList</td>
+<td>承租人資料</td>
+<td>承租人資料</td>
+</tr>
+<tr class="even">
+<td>r_farm_temp</td>
+<td>tenantTransfer</td>
+<td>大佃農轉契作補貼</td>
+<td>給佃農的轉契作補貼</td>
+</tr>
+<tr class="odd">
+<td>r_pay</td>
+<td>landlordRent</td>
+<td>小地主出租給付</td>
+<td>給地主的出租給付</td>
+</tr>
+<tr class="even">
+<td>r_paya</td>
+<td>landlordRetire</td>
+<td>離農獎勵</td>
+<td>給地主的離農獎勵</td>
+</tr>
+<tr class="odd">
+<td>r_rent</td>
+<td>tenantFallowRent</td>
+<td>租用農地改善補貼</td>
+<td>給佃農的租用連續休耕地改善補貼</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>聯絡窗口：農糧署張乃文技正。</li>
+<li>資料索取：逢甲楊老師。</li>
 </ul>
 </div>
-<div id="bookgit-pages" class="section level3 unnumbered">
-<h3>如何把book放到git pages</h3>
-<pre><code># windows command prompt
-mkdir docs -- create `docs` folder to host html file.
-
-# 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /mir /copyall</code></pre>
-<pre><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
-
+<div id="-3" class="section level2">
+<h2><span class="header-section-number">7.2</span> 資料欄位</h2>
+<ul>
+<li>檔案位置：<code>Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\小大\</code>。</li>
+</ul>
+<div id="schema-4" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> 歷年schema</h3>
+<p><code>承租人資料(tenantList)</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>承租人姓名</td>
+<td>appName</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>通訊地址</td>
+<td>pstadr</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>聯絡電話</td>
+<td>psttel</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>戶籍地址</td>
+<td>prmadr</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>檔號</td>
+<td>pstno</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>承租人證號</td>
+<td>appID</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>地段代碼</td>
+<td>lndNo7</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>地號</td>
+<td>lndNo8</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>所有權人證號</td>
+<td>ownerID</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>承租面積</td>
+<td>rarea</td>
+<td></td>
+<td>公頃</td>
+</tr>
+<tr class="odd">
+<td>租期</td>
+<td>ryear</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>證號</td>
+<td>eid</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>租金/年</td>
+<td>rprice</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>一期契約種類</td>
+<td>choice</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>申報一期作物</td>
+<td>dcl_chgcd1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>核定一期作物</td>
+<td>chgcd1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>二期契約種類</td>
+<td>choice2</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>申報二期作物</td>
+<td>dcl_chgcd2</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>核定二期作物</td>
+<td>chgcd11</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>合格/不合格</td>
+<td>pass</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>年度</td>
+<td>syy</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>期別</td>
+<td>spp</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>開始年期</td>
+<td>yypp</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>所有權人姓名</td>
+<td>ownerName</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>所有權人地址</td>
+<td>ritadr</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>承租人生日</td>
+<td>birthday</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>土地使用分區</td>
+<td>lndhow</td>
+<td></td>
+<td>田、林、建、牧、河…等</td>
+</tr>
+<tr class="even">
+<td>使用地類別</td>
+<td>lndtype</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
+<div id="-3" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> 資料庫清單</h3>
+<ul>
+<li>一大堆</li>
+</ul>
+</div>
+</div>
+<div id="-3" class="section level2">
+<h2><span class="header-section-number">7.3</span> 資料處理過程</h2>
+<ol style="list-style-type: decimal">
+<li>R套件匯入</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">航照稻作圖資轉文字檔</span><span class="ch">\\</span><span class="st">106年&quot;)</span>
+<span class="st">library(tidyverse)</span>
+<span class="st">library(readxl) # under tidyverse.</span>
+<span class="st">library(prettydoc) # for beautiful markdown doc.</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>資料處理</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;1061rice_文數字.xlsx&quot;</span>) <span class="co"># import first period data.</span>
+p2 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;1062rice_文數字.xlsx&quot;</span>) <span class="co"># import second period data.</span>
+pf &lt;-<span class="st"> </span><span class="kw">rbind</span>(p1, p2) <span class="co"># combine the 2 period data.</span>
+<span class="kw">names</span>(pf) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AREA&quot;</span>, <span class="st">&quot;RICE_CODE&quot;</span>, <span class="st">&quot;MOI_CODE&quot;</span>, <span class="st">&quot;LNDNO5&quot;</span>, <span class="st">&quot;LNDNO4&quot;</span>, <span class="st">&quot;RICD&quot;</span>, <span class="st">&quot;landNo&quot;</span>, <span class="st">&quot;PIC_NO&quot;</span>, <span class="st">&quot;SYY&quot;</span>, <span class="st">&quot;SPP&quot;</span>) <span class="co"># follow the schema.</span>
+<span class="kw">write.table</span>(pf, <span class="st">&quot;raw_RICE106.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">quote=</span><span class="ot">FALSE</span>) <span class="co"># import into SQL(aerial_graphic.dbo.raw_RICE106)</span></code></pre></div>
+
 </div>
 </div>
             </section>
@@ -243,8 +475,8 @@ ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book
           </div>
         </div>
       </div>
-
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="paddy-procurement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-8.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

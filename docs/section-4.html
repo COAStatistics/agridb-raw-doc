@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-1.html">
+<link rel="prev" href="-aerial-graphic.html">
+<link rel="next" href="section-5.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -190,52 +190,247 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">農業統計資料庫說明文件</h1>
-<h4 class="author"><em>SzuWei Chen</em></h4>
-<h4 class="date"><em>2018年5月30日</em></h4>
-</div>
-<div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
-<h1>農業統計資料庫說明文件</h1>
-<ul>
-<li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
-</ul>
-<div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
-<h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
+<div id="section-4" class="section level1">
+<h1><span class="header-section-number">4</span> 敏感性作物調查</h1>
+<hr />
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> 背景說明</h2>
+<div id="e8b387e69699e5baabe8a8ade7bdaee79baee79a84" class="section level3 unnumbered">
+<h3>資料庫設置目的</h3>
+<div class="figure">
+<img src="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/78b5d7c25bb7c70d2d69a687c7868163/instruction.png" />
 
-<span class="co">#2. install R &amp; R-Studio</span>
-R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
-RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
-
-<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">library</span>(bookdown)
-<span class="kw">library</span>(rmarkdown)</code></pre></div>
 </div>
-<div id="git-page" class="section level2 unnumbered">
-<h2>git page設定</h2>
-<div id="e69599e5adb8e7b6b2e59d80" class="section level3 unnumbered">
-<h3>教學網址</h3>
+</div>
+<div id="e6adb7e5b9b4e8aabfe69fa5e59381e9a085" class="section level3 unnumbered">
+<h3>歷年調查品項</h3>
+<div class="figure">
+<img src="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2d9/0c8c020f64aa62fa1842bd794c3762cd/item.png" />
+
+</div>
 <ul>
-<li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
-<li>網站跟目錄： <code>/docs</code></li>
-<li><a href="http://google.com">成品網址</a></li>
+<li><p>聯絡窗口：農糧署劉彥彤技佐。</p></li>
+<li><p>資料索取：逢甲楊老師</p></li>
 </ul>
 </div>
-<div id="bookgit-pages" class="section level3 unnumbered">
-<h3>如何把book放到git pages</h3>
-<pre><code># windows command prompt
-mkdir docs -- create `docs` folder to host html file.
-
-# 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /mir /copyall</code></pre>
-<pre><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
-
 </div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">4.2</span> 資料欄位</h2>
+<ul>
+<li>檔案位置：<code>Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\清冊檔\pdadecl(敏感性作物+全鄉性調查)\</code></li>
+</ul>
+<div id="schema-2" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> 歷年Schema</h3>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>土地座落</td>
+<td>landNo</td>
+<td>varchar(16)</td>
+<td>15碼地段地號</td>
+</tr>
+<tr class="even">
+<td>面積</td>
+<td>DCL_CHGA1</td>
+<td>float</td>
+<td>公頃</td>
+</tr>
+<tr class="odd">
+<td>作物代碼</td>
+<td>DCL_CHGCD1</td>
+<td>char(3)</td>
+<td>可參照<code>phstemp_code</code>，轉換為中文</td>
+</tr>
+<tr class="even">
+<td>分子</td>
+<td>NUM</td>
+<td>numeric(18,0)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>分母</td>
+<td>DENO</td>
+<td>numeric(18,0)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>勘查日期</td>
+<td>UPDATE</td>
+<td>char(8)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>處別代碼</td>
+<td>PT_ID</td>
+<td>char(2)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>鄉鎮代碼</td>
+<td>EID</td>
+<td>char(4)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>變更使用面積</td>
+<td>LNDCHRA</td>
+<td>float</td>
+<td>公頃</td>
+</tr>
+<tr class="even">
+<td>土地面積</td>
+<td>LNDARA</td>
+<td>float</td>
+<td>公頃</td>
+</tr>
+<tr class="odd">
+<td>狀況</td>
+<td>STATUS</td>
+<td>char(2)</td>
+<td>0與NA</td>
+</tr>
+<tr class="even">
+<td>河川地註記</td>
+<td>DCL_LNDTYPE</td>
+<td>varchar(2)</td>
+<td>見下方說明</td>
+</tr>
+<tr class="odd">
+<td>作物生長期</td>
+<td>DCL_BRTYP</td>
+<td>varchar(2)</td>
+<td>見下方說明</td>
+</tr>
+<tr class="even">
+<td>保留1</td>
+<td>DCL_TRTYP</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>保留2</td>
+<td>DCL_TRDATE</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>異動時間</td>
+<td>UPDTIME</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>土地使用區分</td>
+<td>土地使用區分</td>
+<td>varchar(50)</td>
+<td>無使用</td>
+</tr>
+<tr class="even">
+<td>編定使用種類</td>
+<td>編定使用種類</td>
+<td>varchar(50)</td>
+<td>無使用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-4.2.2" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> 河川地註記</h3>
+<table>
+<thead>
+<tr class="header">
+<th>代碼</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>地籍</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>河川地</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-4.2.3" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> 作物生長期</h3>
+<table>
+<thead>
+<tr class="header">
+<th>代碼</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>定植期</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>蓮坐期</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>豎立期</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>結球期</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>已採收</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>待判</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> 資料庫清單</h3>
+<ul>
+<li>101pdadecl: 101年資料</li>
+<li>102PDA: 102年不完整資料</li>
+<li>103pda_newRD1: 102年完整資料</li>
+<li>103pdadecl: 103年資料</li>
+<li>104pdadecl: 104年資料</li>
+<li>105pdadecl: 105年處理資料(<code>移除地段地號為16碼且中間有R的</code>、<code>排除地段地號不為15碼的資料</code>)</li>
+<li>raw_105pdadecl: 105年原始資料</li>
+<li>raw_106pdadecl: 106年原始資料</li>
+</ul>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> 資料處理過程</h2>
+<p>1.R套件匯入</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">清冊檔</span><span class="ch">\\</span><span class="st">pdadecl(敏感性作物+全鄉性調查)</span><span class="ch">\\</span><span class="st">106&quot;</span>)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(prettydoc) <span class="co"># for beautiful markdown doc.</span>
+<span class="kw">library</span>(readxl) <span class="co"># under tidyverse.</span>
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>資料處理</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;6敏感作物備份106年.xlsx&quot;</span>) <span class="co"># use readr package under tidyverse</span>
+<span class="kw">dim</span>(file) <span class="co"># rows: 73089 columns: 18</span>
+<span class="kw">names</span>(file) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;landNo&quot;</span>, <span class="st">&quot;DCL_CHGA1&quot;</span>, <span class="st">&quot;DCL_CHGCD1&quot;</span>, <span class="st">&quot;NUM&quot;</span>, <span class="st">&quot;DENO&quot;</span>, <span class="st">&quot;UPDATE&quot;</span>, <span class="st">&quot;PT_ID&quot;</span>, <span class="st">&quot;EID&quot;</span>, <span class="st">&quot;LNDCHRA&quot;</span>, <span class="st">&quot;LNDARA&quot;</span>, <span class="st">&quot;STATUS&quot;</span>, <span class="st">&quot;DCL_LNDTYPE&quot;</span>, <span class="st">&quot;DCL_BRTYP&quot;</span>, <span class="st">&quot;DCL_TRTYP&quot;</span>, <span class="st">&quot;DCL_TRDATE&quot;</span>, <span class="st">&quot;UPDTIME&quot;</span>, <span class="st">&quot;土地使用區分&quot;</span>, <span class="st">&quot;編定使用種類&quot;</span>) <span class="co"># follow schema.</span>
+file2 &lt;-<span class="st"> </span>file[<span class="op">-</span><span class="kw">which</span>(<span class="kw">nchar</span>(file<span class="op">$</span>landNo) <span class="op">!=</span><span class="dv">15</span>),] <span class="co"># remove landNo = M080040808960044</span>
+<span class="kw">write.table</span>(file2, <span class="st">&quot;raw_106pdadecl.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">quote=</span><span class="ot">FALSE</span>) <span class="co"># import into SQL(sensitive.dbo.raw_106pdadecl)</span></code></pre></div>
+
 </div>
 </div>
             </section>
@@ -243,8 +438,8 @@ ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book
           </div>
         </div>
       </div>
-
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="-aerial-graphic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

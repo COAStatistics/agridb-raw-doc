@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-1.html">
+<link rel="prev" href="section-2.html">
+<link rel="next" href="section-4.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -190,52 +190,142 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">農業統計資料庫說明文件</h1>
-<h4 class="author"><em>SzuWei Chen</em></h4>
-<h4 class="date"><em>2018年5月30日</em></h4>
-</div>
-<div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
-<h1>農業統計資料庫說明文件</h1>
+<div id="-aerial_graphic" class="section level1">
+<h1><span class="header-section-number">3</span> 航照稻作辨識 (aerial_graphic)</h1>
+<hr />
+<div id="section-3.1" class="section level2">
+<h2><span class="header-section-number">3.1</span> 背景說明</h2>
 <ul>
-<li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
+<li>資料庫設置目的</li>
 </ul>
-<div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
-<h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
+<div class="figure">
+<img src="https://trello-attachments.s3.amazonaws.com/5a0117d243de779b5875b2b7/5a0117d243de779b5875b2c7/adbc66a0f89e475d1d5650557030dc8f/test.png" title="航照稻作設置說明" />
 
-<span class="co">#2. install R &amp; R-Studio</span>
-R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
-RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
-
-<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">library</span>(bookdown)
-<span class="kw">library</span>(rmarkdown)</code></pre></div>
 </div>
-<div id="git-page" class="section level2 unnumbered">
-<h2>git page設定</h2>
-<div id="e69599e5adb8e7b6b2e59d80" class="section level3 unnumbered">
-<h3>教學網址</h3>
 <ul>
-<li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
-<li>網站跟目錄： <code>/docs</code></li>
-<li><a href="http://google.com">成品網址</a></li>
+<li>此資料庫中，每一列資料皆為判識為水稻的地段地號。</li>
+<li>聯絡窗口：農糧署利沛燕專員。</li>
 </ul>
 </div>
-<div id="bookgit-pages" class="section level3 unnumbered">
-<h3>如何把book放到git pages</h3>
-<pre><code># windows command prompt
-mkdir docs -- create `docs` folder to host html file.
-
-# 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /mir /copyall</code></pre>
-<pre><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
-
+<div id="section-3.2" class="section level2">
+<h2><span class="header-section-number">3.2</span> 資料欄位</h2>
+<ul>
+<li>檔案位置：<code>Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\航照稻作圖資轉文字檔\</code>，注意有分1、2期</li>
+<li><code>注意事項</code>：地號為R之河川地，需特別處理</li>
+</ul>
+<div id="schema-1" class="section level3 unnumbered">
+<h3>歷年schema</h3>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>航測面積</td>
+<td>AREA</td>
+<td>float</td>
+<td>面積(平方公尺)</td>
+</tr>
+<tr class="even">
+<td>糧食碼</td>
+<td>RICE_CODE</td>
+<td>varchar(6)</td>
+<td>以前的糧食局時代縣市碼+地段碼</td>
+</tr>
+<tr class="odd">
+<td>內政碼</td>
+<td>MOI_CODE</td>
+<td>varchar(7)</td>
+<td>縣市碼+鄉鎮碼+地段碼</td>
+</tr>
+<tr class="even">
+<td>地目</td>
+<td>LNDNO5</td>
+<td>char(1)</td>
+<td>田、林、旱、牧、建…等</td>
+</tr>
+<tr class="odd">
+<td>地號</td>
+<td>LNDNO4</td>
+<td>varchar(6)</td>
+<td><code>地號，R開頭為河川地，需另外轉換</code></td>
+</tr>
+<tr class="even">
+<td>水稻</td>
+<td>RICD</td>
+<td>char(1)</td>
+<td>1為航照判識為水稻，3為現場調查結果為水稻</td>
+</tr>
+<tr class="odd">
+<td>KEYNO</td>
+<td>landNo</td>
+<td>varchar(15)</td>
+<td>15碼代碼，需轉為14碼農委會標準碼</td>
+</tr>
+<tr class="even">
+<td>圖號</td>
+<td>PIC_NO</td>
+<td>char(8)</td>
+<td>農航所依據拍攝範圍發布的1/5000地理資訊</td>
+</tr>
+<tr class="odd">
+<td>年度</td>
+<td>SYY</td>
+<td>char(3)</td>
+<td>民國年</td>
+</tr>
+<tr class="even">
+<td>期別</td>
+<td>SPP</td>
+<td>char(1)</td>
+<td>期作別</td>
+</tr>
+</tbody>
+</table>
 </div>
+<div id="e8b387e69699e5baabe6b885e596ae" class="section level3 unnumbered">
+<h3>資料庫清單</h3>
+<ul>
+<li>newRICE1021: 將102年1期是河川地轉換完成並新增一欄為<code>newKEYNO</code></li>
+<li>newRICE1031: 將103年1期是河川地轉換完成並新增一欄為<code>newKEYNO</code></li>
+<li>newRICE1032: 將103年2期是河川地轉換完成並新增一欄為<code>newKEYNO</code></li>
+<li>raw_RICE105: 105年1期與2期原始資料</li>
+<li>raw_RICE106: 106年1期與2期原始資料</li>
+<li>RICE1021: 102年1期原始資料</li>
+<li>RICE1022: 102年2期原始資料</li>
+<li>RICE1031: 103年1期原始資料</li>
+<li>RICE1031_code: 繪製103年1期稻米生產分布圖的14/15碼地籍轉換</li>
+<li>RICE1032: 103年2期原始資料</li>
+<li>RICE1032_code: 繪製103年2期稻米生產分布圖的14/15碼地籍轉換</li>
+<li>RICE1041: 104年1期原始資料</li>
+<li>RICE1042: 104年2期原始資料</li>
+<li>RicePda103_: 不知道是什麼</li>
+</ul>
+</div>
+</div>
+<div id="section-3.3" class="section level2">
+<h2><span class="header-section-number">3.3</span> 資料處理過程</h2>
+<ol style="list-style-type: decimal">
+<li>R套件匯入</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">航照稻作圖資轉文字檔</span><span class="ch">\\</span><span class="st">106年&quot;)</span>
+<span class="st">library(tidyverse)</span>
+<span class="st">library(readxl) # under tidyverse.</span>
+<span class="st">library(prettydoc) # for beautiful markdown doc.</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>資料處理</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;1061rice_文數字.xlsx&quot;</span>) <span class="co"># import first period data.</span>
+p2 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;1062rice_文數字.xlsx&quot;</span>) <span class="co"># import second period data.</span>
+pf &lt;-<span class="st"> </span><span class="kw">rbind</span>(p1, p2) <span class="co"># combine the 2 period data.</span>
+<span class="kw">names</span>(pf) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AREA&quot;</span>, <span class="st">&quot;RICE_CODE&quot;</span>, <span class="st">&quot;MOI_CODE&quot;</span>, <span class="st">&quot;LNDNO5&quot;</span>, <span class="st">&quot;LNDNO4&quot;</span>, <span class="st">&quot;RICD&quot;</span>, <span class="st">&quot;landNo&quot;</span>, <span class="st">&quot;PIC_NO&quot;</span>, <span class="st">&quot;SYY&quot;</span>, <span class="st">&quot;SPP&quot;</span>) <span class="co"># follow the schema.</span>
+<span class="kw">write.table</span>(pf, <span class="st">&quot;raw_RICE106.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">quote=</span><span class="ot">FALSE</span>) <span class="co"># import into SQL(aerial_graphic.dbo.raw_RICE106)</span></code></pre></div>
+
 </div>
 </div>
             </section>
@@ -243,8 +333,8 @@ ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book
           </div>
         </div>
       </div>
-
-<a href="section-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
