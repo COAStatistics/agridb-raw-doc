@@ -14,6 +14,7 @@ description: "農委會統計室執行之農業統計資料庫說明文件"
 ***
 
 # 農業統計資料庫說明文件 {-}
+- [成果網址](https://coastatistics.github.io/agridb/)
 - 本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。
 - 本文件是以`R`開發，使用`bookdown`與`rmarkdown`完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。
 
@@ -41,10 +42,9 @@ library(rmarkdown)
 
 - [連結](https://www.minwt.com/website/server/18522.html)
 - 網站跟目錄： `/docs`
-- [成品網址](http://google.com)
 
 ### 如何把book放到git pages {-}
-```
+``` {git}
 # windows command prompt
 mkdir docs -- create `docs` folder to host html file.
 
@@ -52,6 +52,7 @@ mkdir docs -- create `docs` folder to host html file.
 ROBOCOPY "d:/work/02-DB/00DB_book/_book" "d:/work/02-DB/00DB_book/docs" /mir /copyall
 ```
 
-```
+``` {git}
+# 查詢git log, 並以簡寫描述commit ID
 git log --abbrev-commit -- find the current commit with abbreviation code.
 ```
