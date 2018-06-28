@@ -3,7 +3,7 @@
 
 ## [連結](https://coastatistics.github.io/agridb/index.html)
 
-## 本手冊將說明
+## 本手冊目錄
 - 背景說明
     + 資料庫設置目的
     + 與政策關聯性
