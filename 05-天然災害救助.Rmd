@@ -15,32 +15,32 @@
 
 ### 歷年Schema {-}
 
-欄位-中文        | 欄位-英文         | 欄位屬性    | 定義
------------------|-------------------|-------------|----------
-年度             | year              | char(3)     | 民國年
-災害名稱         | evt_name          | varchar(50) | 災害名稱
-發生日期         | dateTime          | varchar(50) | 災害發生日期
-縣市             | county            | varchar(6)  | 縣市
-鄉鎮             | town              | varchar(8)  | 鄉鎮
-農戶姓名         | ownerName         | varchar(50) | 所有權人姓名
-身份證號         | ownerID           | char(10)    | 所有權人身分證
-地址             | addr              | text        | 地址
-地段             | landNo7           | varchar(7)  | 地段(7碼)
-地段中文         | landNo7CHN        | varchar(50) | 地段中文
-地號             | landNo8           | varchar(9)  | 地號
-本筆面積         | landArea          | float       | 單位是公頃
-權利面積         | landRightsArea    | float       | 單位是公頃
-申請者           | appName           | varchar(50) | 實際耕作者/申請者
-申請作物         | applyCrop         | varchar(50) | 申請作物
-申請面積         | applyArea         | float       | 單位是公頃
-申請受害率       | applyDamageRate   | varchar(50) | 百分比
-核定結果         | approveCheck      | varchar(50) | 符合；不符
-核定作物         | approveCrop       | varchar(50) | 核定作物
-核定面積         | approveArea       | float       | 單位是公頃
-核定受害率       | approveDamageRate | varchar(50) | 百分比
-補助方式         | subsidyType       | varchar(50) | 現金救助
-救助單價(元)     | subsidyStandard   | float       | 依據現金救助標準給定
-核定救助金額(元) | subsidyAmount     | float       | 救助單價 * 核定面積
+欄位-中文                         | 欄位-英文         	     | 欄位屬性 		| 定義
+-----------------|-------------------|--------------|----------
+年度                                   | year              | char(3)      | 民國年
+災害名稱 			 | evt_name          | nvarchar(50) | 災害名稱
+發生日期         		 | dateTime          | varchar(50)  | 災害發生日期
+縣市             		 | county            | nvarchar(6)  | 縣市
+鄉鎮             		 | town              | nvarchar(8)  | 鄉鎮
+農戶姓名         		 | ownerName         | nvarchar(50) | 所有權人姓名
+身份證號         		 | ownerID           | char(10)     | 所有權人身分證
+地址             		 | addr              | text         | 地址
+地段            			 | landNo7           | varchar(7)   | 地段(7碼)
+地段中文         		 | landNo7CHN        | nvarchar(50) | 地段中文
+地號             		 | landNo8           | varchar(9)   | 地號
+本筆面積         		 | landArea          | float        | 單位是公頃
+權利面積         		 | landRightsArea    | float        | 單位是公頃
+申請者          		 | appName           | nvarchar(50) | 實際耕作者/申請者
+申請作物        		 | applyCrop         | nvarchar(50) | 申請作物
+申請面積        		 | applyArea         | float        | 單位是公頃
+申請受害率       		 | applyDamageRate   | varchar(50)  | 百分比
+核定結果         		 | approveCheck      | nvarchar(50) | 符合；不符
+核定作物         		 | approveCrop       | nvarchar(50) | 核定作物
+核定面積         		 | approveArea       | float        | 單位是公頃
+核定受害率       		 | approveDamageRate | nvarchar(50) | 百分比
+補助方式         		 | subsidyType       | nvarchar(50) | 現金救助
+救助單價(元) 		 | subsidyStandard   | float        | 依據現金救助標準給定
+核定救助金額(元) 	 | subsidyAmount     | float        | 救助單價 * 核定面積
 
 ### 資料庫清單 {-}
 
