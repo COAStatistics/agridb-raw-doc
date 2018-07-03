@@ -7,20 +7,20 @@
 
 * 小地主大專業農，包含有5張表：
     + 承租人資料
-    + 大佃農轉氣作補貼
+    + 大佃農轉契作補貼
     + 小地主出租給付
     + 小地主離農獎勵
     + 租用農地改善補貼
     
 * 資料格式：`年分+新資料表名稱`
 
-舊資料表名稱(英文) | 新資料表名稱(英文) | 資料表中文        | 資料表定義
-------------------|------------------|------------------|--------------------------------------
-rent              | tenantList       | 承租人資料        | 承租人資料
-r_farm_temp       | tenantTransfer   | 大佃農轉契作補貼   | 給佃農的轉契作補貼
-r_pay             | landlordRent     | 小地主出租給付     | 給地主的出租給付
-r_paya            | landlordRetire   | 離農獎勵          | 給地主的離農獎勵
-r_rent            | tenantFallowRent | 租用農地改善補貼   | 給佃農的租用連續休耕地改善補貼
+舊資料表名稱(英文) | 新資料表名稱(英文) | 資料表中文       | 資料表定義
+------------------|---------------------|------------------|--------------------------------------
+rent              | tenantList          | 承租人資料       | 承租人資料
+r_farm_temp       | tenantTransfer      | 大佃農轉契作補貼 | 給佃農的轉契作補貼
+r_pay             | landlordRent        | 小地主出租給付   | 給地主的出租給付
+r_paya            | landlordRetire      | 離農獎勵         | 給地主的離農獎勵
+r_rent            | tenantFallowRent    | 租用農地改善補貼 | 給佃農的租用連續休耕地改善補貼
 
 * 聯絡窗口：農糧署張乃文技正。
 * 資料索取：逢甲楊老師。
@@ -60,28 +60,112 @@ r_rent            | tenantFallowRent | 租用農地改善補貼   | 給佃農的
 所有權人姓名   | ownerName  |  | 
 所有權人地址   | ritadr     |  | 
 承租人生日     | birthday   |  | 
-土地使用分區   | lndhow     |  | 田、林、建、牧、河...等
-使用地類別     | lndtype    |  | 
+土地使用分區   | lndhow     |  | 
+使用地類別     | lndtype    |  | 田、林、建、牧、河...等
+
+`大佃農轉契作補貼(tenantTransfer)`
+
+欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
+---------------|------------|----------------|-----------
+大佃農身分證號 | appID      | char(10)       | 大佃農身分證號
+作物大類       | cropType   | char(1)        | 可與fallow.dbo.cropCode參照
+承租面積       | rentArea   | float          | 公頃
+補貼金額       | subsidy    | float          | 金額
+處別           |            | char(2)        |
+鄉鎮           |            | char(4)        |
+年度           | year       | char(3)        |
+期別           | period     | char(1)        |
+是否為特殊期   |            | char(1)        | 全部是N，表示都不是特殊期 
+
+
+`小地主出租給付(landlordRent)`
+
+欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
+---------------|------------|----------------|-----------
+年度           | year       | char(3)        | 大佃農身分證號
+期別           | period     | char(1)        | 可與fallow.dbo.cropCode參照
+地主身分證字號 | ownerID    | char(10)       | 公頃
+compute_0004   |            | varchar(2)     | 未知
+承租人應付     | tenantPay  | int            | 金額
+政府應付       | govPay     | int            | 金額
+處別           |            | char(2)        |
+鄉鎮           |            | char(4)        |
+出租面積       | area       | float        | 全部是N，表示都不是特殊期 
+
+`離農獎勵(landlordRetire)`
+
+欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
+---------------|------------|----------------|-----------
+年度           | year       | char(3)        | 大佃農身分證號
+期別           | period     | char(1)        | 可與fallow.dbo.cropCode參照
+地主身分證字號 | ownerID    | char(10)       | 公頃
+compute_0004   |            | varchar(2)     | 未知
+承租人應付     | tenantPay  | int            | 金額
+政府應付       | govPay     | int            | 金額
+處別           |            | char(2)        |
+鄉鎮           |            | char(4)        |
+出租面積       | area       | float          | 全部是N，表示都不是特殊期 
+次數           |            |                | 全都是null
+
+`租用農地改善補貼(tenantFallowRent)`
+
+欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
+---------------|------------|----------------|-----------
+大佃農證號     | ownerID       | char(10)        | 大佃農身分證號
+地段
+地號
+土地所有權人證號
+承租面積
+租期
+處別
+鄉鎮
+租金/年
+一期作物
+二期作物
+ddate
+合格/不合格
+原因
+繳交倉庫
+結束年
+結束期
+轉申報次數
+A=本期種綠肥;S=本期停灌;空白=本期非綠肥
+開始年期
+懲處
+經營規模
+土地來源
+關係
+連續休耕
+農地改善(Y=已領;A=有;N=無)
+契約啟始年~期
+一期契約
+一期有機
+二期有機
+二期契約
+土地所有權人
+所有權人地址
+所有權人銀行別
+所有權人存款帳號
+所有權人存款帳號姓名
+所有權人電話
+rpstid
+本行/他行
+存歿
+資格起算
+dup
+備註
+輔導到期日
+地目
+使用分區
+使用地類別
+建立人
+建立日期
+最後異動人
+最後異動時間
+原土地檔證號
 
 ### 資料庫清單
 
 - 一大堆
 
 ## 資料處理過程
-
-1. R套件匯入
-```{r , eval=FALSE}
-setwd("Z:\\03-調查統計科\\001_農業統計整合資料庫\\001_農業統計整合資料庫\\01--休耕、耕鋤、災害\\原始資料\\航照稻作圖資轉文字檔\\106年")
-library(tidyverse)
-library(readxl) # under tidyverse.
-library(prettydoc) # for beautiful markdown doc.
-```
-
-2. 資料處理
-```{r , eval=FALSE}
-p1 <- read_excel("1061rice_文數字.xlsx") # import first period data.
-p2 <- read_excel("1062rice_文數字.xlsx") # import second period data.
-pf <- rbind(p1, p2) # combine the 2 period data.
-names(pf) <- c("AREA", "RICE_CODE", "MOI_CODE", "LNDNO5", "LNDNO4", "RICD", "landNo", "PIC_NO", "SYY", "SPP") # follow the schema.
-write.table(pf, "raw_RICE106.txt", sep=",", row.names=F, quote=FALSE) # import into SQL(aerial_graphic.dbo.raw_RICE106)
-```

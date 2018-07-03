@@ -205,7 +205,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>小地主大專業農，包含有5張表：
 <ul>
 <li>承租人資料</li>
-<li>大佃農轉氣作補貼</li>
+<li>大佃農轉契作補貼</li>
 <li>小地主出租給付</li>
 <li>小地主離農獎勵</li>
 <li>租用農地改善補貼</li>
@@ -437,16 +437,243 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td>土地使用分區</td>
 <td>lndhow</td>
 <td></td>
-<td>田、林、建、牧、河…等</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>使用地類別</td>
 <td>lndtype</td>
 <td></td>
-<td></td>
+<td>田、林、建、牧、河…等</td>
 </tr>
 </tbody>
 </table>
+<p><code>大佃農轉契作補貼(tenantTransfer)</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>大佃農身分證號</td>
+<td>appID</td>
+<td>char(10)</td>
+<td>大佃農身分證號</td>
+</tr>
+<tr class="even">
+<td>作物大類</td>
+<td>cropType</td>
+<td>char(1)</td>
+<td>可與fallow.dbo.cropCode參照</td>
+</tr>
+<tr class="odd">
+<td>承租面積</td>
+<td>rentArea</td>
+<td>float</td>
+<td>公頃</td>
+</tr>
+<tr class="even">
+<td>補貼金額</td>
+<td>subsidy</td>
+<td>float</td>
+<td>金額</td>
+</tr>
+<tr class="odd">
+<td>處別</td>
+<td></td>
+<td>char(2)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>鄉鎮</td>
+<td></td>
+<td>char(4)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>年度</td>
+<td>year</td>
+<td>char(3)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>期別</td>
+<td>period</td>
+<td>char(1)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>是否為特殊期</td>
+<td></td>
+<td>char(1)</td>
+<td>全部是N，表示都不是特殊期</td>
+</tr>
+</tbody>
+</table>
+<p><code>小地主出租給付(landlordRent)</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>年度</td>
+<td>year</td>
+<td>char(3)</td>
+<td>大佃農身分證號</td>
+</tr>
+<tr class="even">
+<td>期別</td>
+<td>period</td>
+<td>char(1)</td>
+<td>可與fallow.dbo.cropCode參照</td>
+</tr>
+<tr class="odd">
+<td>地主身分證字號</td>
+<td>ownerID</td>
+<td>char(10)</td>
+<td>公頃</td>
+</tr>
+<tr class="even">
+<td>compute_0004</td>
+<td></td>
+<td>varchar(2)</td>
+<td>未知</td>
+</tr>
+<tr class="odd">
+<td>承租人應付</td>
+<td>tenantPay</td>
+<td>int</td>
+<td>金額</td>
+</tr>
+<tr class="even">
+<td>政府應付</td>
+<td>govPay</td>
+<td>int</td>
+<td>金額</td>
+</tr>
+<tr class="odd">
+<td>處別</td>
+<td></td>
+<td>char(2)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>鄉鎮</td>
+<td></td>
+<td>char(4)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>出租面積</td>
+<td>area</td>
+<td>float</td>
+<td>全部是N，表示都不是特殊期</td>
+</tr>
+</tbody>
+</table>
+<p><code>離農獎勵(landlordRetire)</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>年度</td>
+<td>year</td>
+<td>char(3)</td>
+<td>大佃農身分證號</td>
+</tr>
+<tr class="even">
+<td>期別</td>
+<td>period</td>
+<td>char(1)</td>
+<td>可與fallow.dbo.cropCode參照</td>
+</tr>
+<tr class="odd">
+<td>地主身分證字號</td>
+<td>ownerID</td>
+<td>char(10)</td>
+<td>公頃</td>
+</tr>
+<tr class="even">
+<td>compute_0004</td>
+<td></td>
+<td>varchar(2)</td>
+<td>未知</td>
+</tr>
+<tr class="odd">
+<td>承租人應付</td>
+<td>tenantPay</td>
+<td>int</td>
+<td>金額</td>
+</tr>
+<tr class="even">
+<td>政府應付</td>
+<td>govPay</td>
+<td>int</td>
+<td>金額</td>
+</tr>
+<tr class="odd">
+<td>處別</td>
+<td></td>
+<td>char(2)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>鄉鎮</td>
+<td></td>
+<td>char(4)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>出租面積</td>
+<td>area</td>
+<td>float</td>
+<td>全部是N，表示都不是特殊期</td>
+</tr>
+<tr class="even">
+<td>次數</td>
+<td></td>
+<td></td>
+<td>全都是null</td>
+</tr>
+</tbody>
+</table>
+<p><code>租用農地改善補貼(tenantFallowRent)</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>欄位-中文</th>
+<th>欄位-英文</th>
+<th>欄位屬性</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>大佃農證號</td>
+<td>ownerID</td>
+<td>char(10)</td>
+<td>大佃農身分證號</td>
+</tr>
+</tbody>
+</table>
+<p>地段 地號 土地所有權人證號 承租面積 租期 處別 鄉鎮 租金/年 一期作物 二期作物 ddate 合格/不合格 原因 繳交倉庫 結束年 結束期 轉申報次數 A=本期種綠肥;S=本期停灌;空白=本期非綠肥 開始年期 懲處 經營規模 土地來源 關係 連續休耕 農地改善(Y=已領;A=有;N=無) 契約啟始年~期 一期契約 一期有機 二期有機 二期契約 土地所有權人 所有權人地址 所有權人銀行別 所有權人存款帳號 所有權人存款帳號姓名 所有權人電話 rpstid 本行/他行 存歿 資格起算 dup 備註 輔導到期日 地目 使用分區 使用地類別 建立人 建立日期 最後異動人 最後異動時間 原土地檔證號</p>
 </div>
 <div id="-4" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> 資料庫清單</h3>
@@ -457,21 +684,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="-3" class="section level2">
 <h2><span class="header-section-number">7.3</span> 資料處理過程</h2>
-<ol style="list-style-type: decimal">
-<li>R套件匯入</li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;Z:</span><span class="ch">\\</span><span class="st">03-調查統計科</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">001_農業統計整合資料庫</span><span class="ch">\\</span><span class="st">01--休耕、耕鋤、災害</span><span class="ch">\\</span><span class="st">原始資料</span><span class="ch">\\</span><span class="st">航照稻作圖資轉文字檔</span><span class="ch">\\</span><span class="st">106年&quot;)</span>
-<span class="st">library(tidyverse)</span>
-<span class="st">library(readxl) # under tidyverse.</span>
-<span class="st">library(prettydoc) # for beautiful markdown doc.</span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>資料處理</li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;1061rice_文數字.xlsx&quot;</span>) <span class="co"># import first period data.</span>
-p2 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;1062rice_文數字.xlsx&quot;</span>) <span class="co"># import second period data.</span>
-pf &lt;-<span class="st"> </span><span class="kw">rbind</span>(p1, p2) <span class="co"># combine the 2 period data.</span>
-<span class="kw">names</span>(pf) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AREA&quot;</span>, <span class="st">&quot;RICE_CODE&quot;</span>, <span class="st">&quot;MOI_CODE&quot;</span>, <span class="st">&quot;LNDNO5&quot;</span>, <span class="st">&quot;LNDNO4&quot;</span>, <span class="st">&quot;RICD&quot;</span>, <span class="st">&quot;landNo&quot;</span>, <span class="st">&quot;PIC_NO&quot;</span>, <span class="st">&quot;SYY&quot;</span>, <span class="st">&quot;SPP&quot;</span>) <span class="co"># follow the schema.</span>
-<span class="kw">write.table</span>(pf, <span class="st">&quot;raw_RICE106.txt&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">row.names=</span>F, <span class="dt">quote=</span><span class="ot">FALSE</span>) <span class="co"># import into SQL(aerial_graphic.dbo.raw_RICE106)</span></code></pre></div>
 
 </div>
 </div>
