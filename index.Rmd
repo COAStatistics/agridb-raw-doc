@@ -14,7 +14,7 @@ description: "農委會統計室執行之農業統計資料庫說明文件"
 ***
 
 # 農業統計資料庫說明文件 {-}
-- [成果網址](https://coastatistics.github.io/agridb/)
+- [成果網址](https://coastatistics.github.io/agridb-raw-doc/index.html)
 - 本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。
 - 本文件是以`R`開發，使用`bookdown`與`rmarkdown`完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。
 
