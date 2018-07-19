@@ -3,38 +3,129 @@
 
 ## 背景說明
 * 資料庫設置目的
-
+台灣平均農家耕地面積約1.1公頃，主要農民年齡平均62歲，為活化農曆利用，加速農業轉型升級，提升競爭力，推動小地主大專業農政策，鼓勵無力耕作之資深農民或無暇耕作之兼業農友，將自有農地出租給有意願擴大農場經營規模之農業經營者，並獎勵年輕專業農民或農民團體承租農地種植具進口替代或出口擴張之農作物，促進農業勞動結構年輕化，擴大農業經營規模，並使老農安心享受離農或推修生活。
 
 * 小地主大專業農，包含有5張表：
-    + 承租人資料
-    + 大佃農轉契作補貼
     + 小地主出租給付
     + 小地主離農獎勵
     + 租用農地改善補貼
+    + 承租人資料
+    + 大專業農轉契作補貼
     
 * 資料格式：`年分+新資料表名稱`
 
 舊資料表名稱(英文) | 新資料表名稱(英文) | 資料表中文       | 資料表定義
 ------------------|---------------------|------------------|--------------------------------------
-rent              | tenantList          | 承租人資料       | 承租人資料
-r_farm_temp       | tenantTransfer      | 大佃農轉契作補貼 | 給佃農的轉契作補貼
 r_pay             | landlordRent        | 小地主出租給付   | 給地主的出租給付
 r_paya            | landlordRetire      | 離農獎勵         | 給地主的離農獎勵
 r_rent            | tenantFallowRent    | 租用農地改善補貼 | 給佃農的租用連續休耕地改善補貼
+rent              | tenantList          | 承租人資料       | 承租人資料
+r_farm_temp       | tenantTransfer      | 大佃農轉契作補貼 | 給佃農的轉契作補貼
 
 * 聯絡窗口：農糧署張乃文技正。
 * 資料索取：逢甲楊老師。
+
 
 ## 資料欄位
 * 檔案位置：`Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\小大\`。
 
 ### 歷年schema
 
+`小地主出租給付(landlordRent)`
+
+欄位-中文      | 欄位-英文    | 欄位屬性       | 定義
+---------------|--------------|----------------|-----------
+年度           | year         | char(3)        | 大佃農身分證號
+期別           | period       | char(1)        | 可與fallow.dbo.cropCode參照
+地主身分證字號 | ownerID      | char(10)       | 
+合約類型       | compute_0004 | varchar(3)     | 參見`合約類型`
+承租人應付     | tenantPay    | int            | 金額
+政府應付       | govPay       | int            | 金額
+處別           | eid          | char(2)        |
+鄉鎮           | country      | char(4)        |
+出租面積       | area         | float          | 公頃
+
+`離農獎勵(landlordRetire)`
+
+欄位-中文      | 欄位-英文    | 欄位屬性       | 定義
+---------------|--------------|----------------|-----------
+年度           | year         | char(3)        | 大佃農身分證號
+期別           | period       | char(1)        | 可與fallow.dbo.cropCode參照
+地主身分證字號 | ownerID      | char(10)       | 公頃
+合約類型       | compute_0004 | varchar(3)     | 參見`合約類型`
+承租人應付     | tenantPay    | int            | 金額
+政府應付       | govPay       | int            | 金額
+處別           |              | char(2)        |
+鄉鎮           |              | char(4)        |
+出租面積       | area         | float          | 全部是N，表示都不是特殊期 
+次數           |              |                | 全都是null
+
+`合約類型`
+
+![](https://trello-attachments.s3.amazonaws.com/5b4eee1d90ba8a3f56297f5e/5b4eee1d90ba8a3f56297f7b/ae7f9e0bc4a36b95c40f8644d196532b/contract_type.jpg "小大合約類型")
+
+`租用農地改善補貼(tenantFallowRent)`
+
+欄位-中文            | 欄位-英文        | 欄位屬性       | 定義
+---------------------|------------------|----------------|-----------
+大佃農證號           | appID            | char(10)       | 大佃農身分證號
+地段                 | landNo7          |                | 7碼地段
+地號                 | landNo8          |                | 8碼地號
+土地所有權人證號     | ownerID          |                | 
+承租面積             | rarea            |                | 公頃
+租期                 | ryear            |                | 
+處別                 | eid              |                | 
+鄉鎮                 | country          |                | 
+租金/年              | rprice           |                | 
+一期作物             | cropCodeP1       |                | 作物代碼
+二期作物             | cropCodeP2       |                | 作物代碼
+首次簽約日           | ddate            |                | 
+合格/不合格          | pass             |                | 
+原因                 | reason           |                | 
+繳交倉庫             | bamCode          |                | 4碼倉庫代碼
+結束年               | endYear          |                | 
+結束期               | endPeriod        |                | 
+轉申報次數           | transferTimes    |                | 
+是否綠肥             | manure           |                | A=本期種綠肥; S=本期停灌; 空白=本期非綠肥
+開始年期             | startYearPeriod  |                | 
+懲處                 | penalty          |                | 
+經營規模             | scaleType        |                | 基本門檻、擴大承租、擴大經營
+土地來源             | landSource       |                | 
+~~關係~~             | ~~relationship~~ |                | ~~詢問廠商得知此欄位已不再使用~~
+連續休耕             | continuousFallow |                | 1=連續休耕; 2=一般地
+農地改善             | landImprovement  |                | Y=已領; A=有; N=無
+~~契約啟始年~期~~    | ~~contractStart~~ |               | ~~詢問廠商得知此欄位已不再使用~~
+一期契約             | contractP1       | varchar(12)    | 數值(月)
+一期有機             | organicP1        |                | 
+二期有機             | organicP2        |                | 
+二期契約             | contractP2       | varchar(12)    | 數值(月)
+土地所有權人         | ownerName        |                | 
+所有權人地址         | ownerAddress     |                | 
+所有權人銀行別       | ownerBank        |                | 
+所有權人存款帳號     | ownerAccount     |                | 
+所有權人存款帳號姓名 | ownerAccountName |                | 
+所有權人電話         | ownerPhone       |                | 
+帳號單位             | rpstid           |                | 
+本行/他行            | pstunt           |                | 
+存歿                 | survive          |                | Y=存; 0/NULL皆為歿
+資格起算             | qualifyDate      |                | 
+~~dup~~              | ~~dup~~          |                | ~~詢問廠商得知此欄位已不再使用~~
+備註                 | note             |                | 
+輔導到期日           | dueDate          |                | 
+地目                 | landCategory     |                | 田、河川、旱、其他...等
+使用分區             | landType1        |                | 特定農業區、農牧用地、水利用地...等代碼
+使用地類別           | landType2        |                | 特定農業區、農牧用地、水利用地...等代碼
+建立人               | creater          |                | 
+建立日期             | createDate       |                | 
+最後異動人           | updater          |                | 
+最後異動時間         | updateDate       |                | 
+原土地檔證號         | landCertifyNo    |                | 
+
 `承租人資料(tenantList)`
 
 欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
 ---------------|------------|----------------|-----------
-承租人姓名     | appName    |  | 
+承租人姓名     | appName    |   | 
 通訊地址       | pstadr     |  |
 聯絡電話       | psttel     |  |
 戶籍地址       | prmadr     |  |
@@ -60,112 +151,65 @@ r_rent            | tenantFallowRent    | 租用農地改善補貼 | 給佃農�
 所有權人姓名   | ownerName  |  | 
 所有權人地址   | ritadr     |  | 
 承租人生日     | birthday   |  | 
-土地使用分區   | lndhow     |  | 
-使用地類別     | lndtype    |  | 田、林、建、牧、河...等
+土地使用分區   | lndhow     |  | 特定農業區、農牧用地、水利用地...等代碼
+使用地類別     | lndtype    |  | 特定農業區、農牧用地、水利用地...等代碼
 
 `大佃農轉契作補貼(tenantTransfer)`
 
-欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
----------------|------------|----------------|-----------
-大佃農身分證號 | appID      | char(10)       | 大佃農身分證號
-作物大類       | cropType   | char(1)        | 可與fallow.dbo.cropCode參照
-承租面積       | rentArea   | float          | 公頃
-補貼金額       | subsidy    | float          | 金額
-處別           |            | char(2)        |
-鄉鎮           |            | char(4)        |
-年度           | year       | char(3)        |
-期別           | period     | char(1)        |
-是否為特殊期   |            | char(1)        | 全部是N，表示都不是特殊期 
+欄位-中文      | 欄位-英文   | 欄位屬性       | 定義
+---------------|-------------|----------------|-----------
+大佃農身分證號 | appID       | char(10)       | 大佃農身分證號
+作物大類       | cropCodeBig | char(1)        | 可與fallow.dbo.cropCode參照
+承租面積       | area        | float          | 公頃
+補貼金額       | subsidy     | float          | 金額
+處別           | eid         | char(2)        |
+鄉鎮           | country     | char(4)        |
+年度           | year        | char(3)        |
+期別           | period      | char(1)        |
+是否為特殊期   | specialCrop | char(1)        | 全部是N，表示都不是特殊期 
 
-
-`小地主出租給付(landlordRent)`
-
-欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
----------------|------------|----------------|-----------
-年度           | year       | char(3)        | 大佃農身分證號
-期別           | period     | char(1)        | 可與fallow.dbo.cropCode參照
-地主身分證字號 | ownerID    | char(10)       | 公頃
-compute_0004   |            | varchar(2)     | 未知
-承租人應付     | tenantPay  | int            | 金額
-政府應付       | govPay     | int            | 金額
-處別           |            | char(2)        |
-鄉鎮           |            | char(4)        |
-出租面積       | area       | float        | 全部是N，表示都不是特殊期 
-
-`離農獎勵(landlordRetire)`
-
-欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
----------------|------------|----------------|-----------
-年度           | year       | char(3)        | 大佃農身分證號
-期別           | period     | char(1)        | 可與fallow.dbo.cropCode參照
-地主身分證字號 | ownerID    | char(10)       | 公頃
-compute_0004   |            | varchar(2)     | 未知
-承租人應付     | tenantPay  | int            | 金額
-政府應付       | govPay     | int            | 金額
-處別           |            | char(2)        |
-鄉鎮           |            | char(4)        |
-出租面積       | area       | float          | 全部是N，表示都不是特殊期 
-次數           |            |                | 全都是null
-
-`租用農地改善補貼(tenantFallowRent)`
-
-欄位-中文      | 欄位-英文  | 欄位屬性       | 定義
----------------|------------|----------------|-----------
-大佃農證號     | ownerID       | char(10)        | 大佃農身分證號
-地段
-地號
-土地所有權人證號
-承租面積
-租期
-處別
-鄉鎮
-租金/年
-一期作物
-二期作物
-ddate
-合格/不合格
-原因
-繳交倉庫
-結束年
-結束期
-轉申報次數
-A=本期種綠肥;S=本期停灌;空白=本期非綠肥
-開始年期
-懲處
-經營規模
-土地來源
-關係
-連續休耕
-農地改善(Y=已領;A=有;N=無)
-契約啟始年~期
-一期契約
-一期有機
-二期有機
-二期契約
-土地所有權人
-所有權人地址
-所有權人銀行別
-所有權人存款帳號
-所有權人存款帳號姓名
-所有權人電話
-rpstid
-本行/他行
-存歿
-資格起算
-dup
-備註
-輔導到期日
-地目
-使用分區
-使用地類別
-建立人
-建立日期
-最後異動人
-最後異動時間
-原土地檔證號
-
+ 
 ### 資料庫清單
-
-- 一大堆
+- 102FBank_Land
+- 102FBank_Member
+- 102FBank_Platform
+- 102rent
+- 1031rent_Y1
+- 103FSBresult
+- 103r_farm_temp
+- 103r_pay
+- 103r_paya
+- 103r_rent
+- 103rent
+- 103rent_ch
+- 103SBresult_ID
+- 1040428FBank_Platform
+- 104FBank_Land
+- 104FBank_Member
+- 104FBank_Platform
+- 104FSBresult
+- 104r_farm_temp
+- 104r_pay
+- 104r_paya
+- 104r_rent
+- 104rent
+- 104rent_temp
+- 105FSBresult: 105整合結果
+- 105r_farm_temp
+- 105r_pay
+- 105r_paya
+- 105r_rent
+- 105rent
+- 106landlordRent: 小地主出租給付
+- 106landlordRetire: 小地主離農獎勵
+- 106tenantFallowRent: 租用農地改善補貼
+- 106tenantList: 承租人資料
+- 106tenantTransfer: 大專業農轉契作補貼
+- raw_105rent
+- raw_106landlordRent
+- raw_106landlordRetire
+- raw_106tenantList
+- raw_106tenantFallowRent
+- raw_106tenantTransfer
 
 ## 資料處理過程
