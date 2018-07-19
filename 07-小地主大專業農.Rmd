@@ -94,7 +94,7 @@ r_farm_temp       | tenantTransfer      | 大佃農轉契作補貼 | 給佃農�
 ~~關係~~             | ~~relationship~~ |                | ~~詢問廠商得知此欄位已不再使用~~
 連續休耕             | continuousFallow |                | 1=連續休耕; 2=一般地
 農地改善             | landImprovement  |                | Y=已領; A=有; N=無
-~~契約啟始年~期~~    | ~~contractStart~~ |               | ~~詢問廠商得知此欄位已不再使用~~
+~~契約啟始年期~~    | ~~contractStart~~ |               | ~~詢問廠商得知此欄位已不再使用~~
 一期契約             | contractP1       | varchar(12)    | 數值(月)
 一期有機             | organicP1        |                | 
 二期有機             | organicP2        |                | 
