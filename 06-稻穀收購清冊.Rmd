@@ -2,11 +2,12 @@
 
 ***
 
-## 緣起
-* 繳交公糧之資料
-* 負責人：逢甲大學楊老師
+## 背景說明
+* 106年起實施「對地綠色環境給付計畫」，明定稻農可申請保價收購或稻作直接給付。
+* 本資料庫為紀錄公糧保價收購之資料，保價收購有計畫收購(21元/公斤)、輔導收購(18元/公斤)、餘糧收購(16.6元/公斤)三種，詳細說明[請點這裡](https://www.coa.gov.tw/theme_data.php?theme=publication&id=3160)
+* 負責廠商：逢甲大學楊老師
 
-## Schema
+## 資料欄位
 
 欄位-中文      | 欄位-英文      | 欄位屬性      | 定義
 ---------------|----------------|---------------|------
@@ -22,16 +23,16 @@
 收購時間       | PH_TIME        | char(4)       |
 含車重         | PH_WAMT        | numeric       |
 空車重         | PH_WDCMT       | numeric       |
-計畫濕穀收購   | PH_RMT11       | numeric       |
-計畫乾穀收購   | PH_RMT12       | numeric       |
-輔導濕穀收購   | PH_RMT31       | numeric       |
-輔導乾穀收購   | PH_RMT32       | numeric       |
-餘糧濕穀收購   | PH_RMT41       | numeric       |
-餘糧乾穀收購   | PH_RMT42       | numeric       |
-良質米濕穀收購 | PH_AMT51       | numeric       |
-良質米乾穀收購 | PH_AMT52       | numeric       |
-自營糧濕穀收購 | PH_AMT71       | numeric       |
-自營糧乾穀收購 | PH_AMT72       | numeric       |
+計畫濕穀收購   | PH_RMT11       | numeric       | 單位：公斤
+計畫乾穀收購   | PH_RMT12       | numeric       | 單位：公斤
+輔導濕穀收購   | PH_RMT31       | numeric       | 單位：公斤
+輔導乾穀收購   | PH_RMT32       | numeric       | 單位：公斤
+餘糧濕穀收購   | PH_RMT41       | numeric       | 單位：公斤
+餘糧乾穀收購   | PH_RMT42       | numeric       | 單位：公斤
+良質米濕穀收購 | PH_AMT51       | numeric       | 單位：公斤
+良質米乾穀收購 | PH_AMT52       | numeric       | 單位：公斤
+自營糧濕穀收購 | PH_AMT71       | numeric       | 單位：公斤
+自營糧乾穀收購 | PH_AMT72       | numeric       | 單位：公斤
 濕穀寄倉       | PH_AM1         | numeric       |
 乾穀寄倉       | PH_AM2         | numeric       |
 聯單編號       | PH_SEQNO       | numeric       |
@@ -54,16 +55,35 @@
 入倉裝袋費     | PH_PSTOF       | numeric       |
 自營稻穀單價   | PH_GO71        | numeric       |
 溢繳稻穀價差   | PH_DED1        | numeric       |
-計畫收購金額   | PH_RMT12_MONEY | numeric       |
-輔導收購金額   | PH_RMT32_MONEY | numeric       |
-餘糧收購金額   | PH_RMT42_MONEY | numeric       |
+計畫收購金額   | PH_RMT12_MONEY | numeric       | 26元/公斤(乾穀)
+輔導收購金額   | PH_RMT32_MONEY | numeric       | 23元/公斤(乾穀)
+餘糧收購金額   | PH_RMT42_MONEY | numeric       | 21.6元/公斤(乾穀)
 建立人         | CREATEID       | char(11)      |
 建立日期       | CREATETIME     | smalldatetime |
 異動人         | UPDID          | char(11)      |
 異動日期       | UPDTIME        | smalldatetime |
 
+### 歷年Schema {-}
 
-## 套件匯入與資料處理
+[連結](Z:\03-調查統計科\001_農業統計整合資料庫\001_農業統計整合資料庫\01--休耕、耕鋤、災害\原始資料\稻穀保價收購\文件\歷年保價收購schema.xlsx)
+
+### 資料庫清單 {-}
+
+- 1021phsamt
+- 1022phsamt
+- 1031phsamt
+- 1032phsamt
+- 1041phsamt
+- 1041phsamt_phsamt_corn
+- 1042phsamt
+- 1050926
+- raw_105phsamt
+- raw_106phsamt
+
+
+## 資料處理過程
+
+### 匯入 {-}
 
 ```{r eval=FALSE, warning=FALSE, message=FALSE}
 #rm(list=ls())
@@ -80,7 +100,7 @@ names(pf) <- c("SYY", "SPP", "PH_LOCCODE", "PT_ID", "EID", "PH_PLACE", "PH_PSTNO
 # PH_WDCMT: 對照最原始的schema只對的到濕穀空車重與乾穀空車重，省略為PH_CMT → 自行命名
 ```
 
-## 檢查欄位最大長度
+### 檢查欄位最大長度 {-}
 
 ```{r eval=FALSE, warning=FALSE, message=FALSE}
 index <- 1
@@ -96,65 +116,7 @@ for (i in 1:dim(pf)[2]) {
 table_nchar
 ```
 
-## SQL匯入
-
-```{r }
-# CREATE TABLE [dbo].[raw_106phsamt] (
-# [SYY] char(3),
-# [SPP] char(1),
-# [PH_LOCCODE] char(4),
-# [PT_ID] char(6),
-# [EID] varchar(12),
-# [PH_PLACE] varchar(34),
-# [PH_PSTNO] varchar(9),
-# [appID] char(10),
-# [PH_DTA] char(7),
-# [PH_TIME] char(4),
-# [PH_WAMT] int,
-# [PH_CMT] int,
-# [PH_RMT11] int,
-# [PH_RMT12] int,
-# [PH_RMT31] int,
-# [PH_RMT32] int,
-# [PH_RMT41] int,
-# [PH_RMT42] int,
-# [PH_AMT51] int,
-# [PH_AMT52] int,
-# [PH_AMT71] int,
-# [PH_AMT72] int,
-# [PH_AM1] int,
-# [PH_AM2] int,
-# [PH_SEQNO] int,
-# [PH_SEQTM] int,
-# [PH_KIND] char(4),
-# [PH_HTOT] int,
-# [PH_DTOT] int,
-# [PH_MONEY] int,
-# [PH_SMONEY] int,
-# [PH_DRYM] int,
-# [PH_SDRYM] int,
-# [PH_RATE] int,
-# [PH_SDCNT] int,
-# [PH_HLPF] int,
-# [PH_PCKF] int,
-# [PH_TRSF] int,
-# [PH_OTHF] int,
-# [PH_STOF] int,
-# [PH_HTRSF] int,
-# [PH_PSTOF] int,
-# [PH_GO71] float,
-# [PH_DED1] int,
-# [PH_RMT12_MONEY] int,
-# [PH_RMT32_MONEY] int,
-# [PH_RMT42_MONEY] int,
-# [CREATEID] char(11),
-# [CREATETIME] smalldatetime,
-# [UPDID] char(11),
-# [UPDTIME] smalldatetime
-# )
-```
-
-## 資料輸出
+### 資料輸出 {-}
 
 ```{r eval=FALSE}
 write.table(pf, "raw_106phsamt.txt", sep = ",", row.names = F, quote = FALSE)
