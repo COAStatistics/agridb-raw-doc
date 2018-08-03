@@ -16,43 +16,48 @@ description: "農委會統計室執行之農業統計資料庫說明文件"
 # 農業統計資料庫說明文件 {-}
 - [成果網址](https://coastatistics.github.io/agridb-raw-doc/index.html)
 - 本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。
-- 本文件是以`R`開發，使用`bookdown`與`rmarkdown`完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。
+- 本文件是以`R`開發，使用`bookdown`與`rmarkdown`完成動態的gitbook編寫，並使用gitpages架在gitgub上，作為日後統一的資料庫文件。
 
 
 ## 專案初始化 {-}
 
 ```{r instruction, eval=FALSE}
-#1. clone from github
-git clone https://github.com/COAStatistics/agridb.git
-
-#2. install R & R-Studio
+#1. install R & R-Studio
 R: https://cran.r-project.org/
 RStudio: https://www.rstudio.com/products/rstudio/download/
 
-#3. install and require the packages: bookdown, rmarkdown.
+#2.
+在RStudio新建一個專案
+
+#3. clone from github
+在cmd模式下移動到你本機的專案路徑後，使用git指令
+
+git clone https://github.com/COAStatistics/agridb.git
+
+#4. install and require the packages: bookdown, rmarkdown.
 install.packages("bookdown")
 install.packages("rmarkdown")
 library(bookdown)
 library(rmarkdown)
 ```
 
+## 製作流程 {-}
+
+- 編輯.Rmd檔
+- 編輯完成後按`Ctrl + B`，`bookdown`套件會把所有.Rmd檔轉成HTML
+- 在專案路徑底下建立`docs`資料夾，並把`.../_book`資料夾底下的所有文件複製到`docs`內，如此才可使用git pages呈現
+
+> 1. mkdir docs # create docs folder to host html file.
+> 2. ROBOCOPY "d:/work/02-DB/00DB_book/_book" "d:/work/02-DB/00DB_book/docs" /MIR /COPYALL /IS # copy all file into /docs
+
 ## git page設定 {-}
 
 ### 教學網址 {-}
 
 - [連結](https://www.minwt.com/website/server/18522.html)
-- 網站跟目錄： `/docs`
+- 網站根目錄： `/docs`
 
-### 如何把book放到git pages {-}
+### 查詢git log，並以簡寫描述commit ID {-}
 ``` {git}
-# windows command prompt
-mkdir docs -- create `docs` folder to host html file.
-
-# 必須具備管理者權限才可執行
-ROBOCOPY "d:/work/02-DB/00DB_book/_book" "d:/work/02-DB/00DB_book/docs" /MIR /COPYALL /IS
-```
-
-``` {git}
-# 查詢git log, 並以簡寫描述commit ID
 git log --abbrev-commit -- find the current commit with abbreviation code.
 ```

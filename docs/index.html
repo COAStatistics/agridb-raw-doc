@@ -100,9 +100,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>農業統計資料庫說明文件</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5b088e6a188e5889de5a78be58c96"><i class="fa fa-check"></i>專案初始化</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8a3bde4bd9ce6b581e7a88b"><i class="fa fa-check"></i>製作流程</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#git-page"><i class="fa fa-check"></i>git page設定</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e69599e5adb8e7b6b2e59d80"><i class="fa fa-check"></i>教學網址</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bookgit-pages"><i class="fa fa-check"></i>如何把book放到git pages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#git-logcommit-id"><i class="fa fa-check"></i>查詢git log，並以簡寫描述commit ID</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>1</b> 前言</a></li>
@@ -207,22 +208,41 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><a href="https://coastatistics.github.io/agridb-raw-doc/index.html">成果網址</a></li>
 <li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並放在gitgub上，作為日後統一的資料庫文件。</li>
+<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並使用gitpages架在gitgub上，作為日後統一的資料庫文件。</li>
 </ul>
 <div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
 <h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. clone from github</span>
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
-
-<span class="co">#2. install R &amp; R-Studio</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. install R &amp; R-Studio</span>
 R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
 RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
 
-<span class="co">#3. install and require the packages: bookdown, rmarkdown.</span>
+<span class="co">#2.</span>
+在RStudio新建一個專案
+
+<span class="co">#3. clone from github</span>
+在cmd模式下移動到你本機的專案路徑後，使用git指令
+
+git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
+
+<span class="co">#4. install and require the packages: bookdown, rmarkdown.</span>
 <span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
 <span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
 <span class="kw">library</span>(bookdown)
 <span class="kw">library</span>(rmarkdown)</code></pre></div>
+</div>
+<div id="e8a3bde4bd9ce6b581e7a88b" class="section level2 unnumbered">
+<h2>製作流程</h2>
+<ul>
+<li>編輯.Rmd檔</li>
+<li>編輯完成後按<code>Ctrl + B</code>，<code>bookdown</code>套件會把所有.Rmd檔轉成HTML</li>
+<li>在專案路徑底下建立<code>docs</code>資料夾，並把<code>.../_book</code>資料夾底下的所有文件複製到<code>docs</code>內，如此才可使用git pages呈現</li>
+</ul>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>mkdir docs # create docs folder to host html file.</li>
+<li>ROBOCOPY “d:/work/02-DB/00DB_book/_book&quot; “d:/work/02-DB/00DB_book/docs” /MIR /COPYALL /IS # copy all file into /docs</li>
+</ol>
+</blockquote>
 </div>
 <div id="git-page" class="section level2 unnumbered">
 <h2>git page設定</h2>
@@ -230,18 +250,12 @@ RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:
 <h3>教學網址</h3>
 <ul>
 <li><a href="https://www.minwt.com/website/server/18522.html">連結</a></li>
-<li>網站跟目錄： <code>/docs</code></li>
+<li>網站根目錄： <code>/docs</code></li>
 </ul>
 </div>
-<div id="bookgit-pages" class="section level3 unnumbered">
-<h3>如何把book放到git pages</h3>
-<pre class="git"><code># windows command prompt
-mkdir docs -- create `docs` folder to host html file.
-
-# 必須具備管理者權限才可執行
-ROBOCOPY &quot;d:/work/02-DB/00DB_book/_book&quot; &quot;d:/work/02-DB/00DB_book/docs&quot; /MIR /COPYALL /IS</code></pre>
-<pre class="git"><code># 查詢git log, 並以簡寫描述commit ID
-git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
+<div id="git-logcommit-id" class="section level3 unnumbered">
+<h3>查詢git log，並以簡寫描述commit ID</h3>
+<pre class="git"><code>git log --abbrev-commit -- find the current commit with abbreviation code.</code></pre>
 
 </div>
 </div>
