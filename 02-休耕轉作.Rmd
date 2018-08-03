@@ -128,17 +128,20 @@
 - 1051DCL_after_cleansing: 將1051DCL清洗(縣市名稱、欄位長度等)，清洗步驟請見 [連結](https://trello-attachments.s3.amazonaws.com/58f5cc1b87fa08bd1723b9ba/59082f65d7db81f5bf785cc0/e1bec0398c987eb96d03915369dc27e8/105DCL_cleansing.sql)。
 - 1051DCL_farmerSurvey: 將1051DCL_after_cleansing進行處理，供主力農家使用 [連結](https://trello.com/c/PtPwtLPl/128-03%E4%BC%91%E8%80%95%E8%BD%89%E4%BD%9C%E7%94%B3%E5%A0%B1fallowdcl)。
 - 105Land: 民國105年的所有權人檔案。
+- 105transferSubsidy_farmerSurvey: 民國105年主力農家所得調查之轉作補貼檔。
 - 105RCD: 民國105年1期+2期的核定檔。
 - 105RD_name: 作物代碼表(105年)。
 - 106DCL_farmerSurvey: 民國106年1+2期的申報檔，主力農家所用。
 - 106transferSubsidy: 民國106年1+2期的轉貼檔(清除無效ID)。
 - 106RCD_cleaning: 民國106年1期+2期的核定檔(清除無效的appID, ownerID以及landNo8)。
 - cropCode: 作物代碼表(106年起)。
-- raw_105RCD: 民國105年1期+2期的核定檔。
+- raw_105DCL: 民國105年1+2期的申報檔(原始檔)。
+- raw_105transferSubsidy: 民國105年的1+2期轉作補貼(原始檔)
+- raw_105RCD: 民國105年1期+2期的核定檔(原始檔)。
 - raw_1061transferSubsidy: 民國106年1期的轉作補貼(原始檔)。
 - raw_1062transferSubsidy: 民國106年2期的轉作補貼(原始檔)。
 - raw_106DCL: 民國106年1+2期的申報檔(原始檔)。
-- raw_106RCD: 民國105年1期+2期的核定檔。
+- raw_106RCD: 民國105年1期+2期的核定檔(原始檔)。
 - raw_106transferSubsidy: 民國106年1+2期的轉作補貼(原始檔)。
 
 ## 資料處理過程
