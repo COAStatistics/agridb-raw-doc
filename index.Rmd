@@ -49,7 +49,7 @@ library(rmarkdown)
 - 編輯完成後按`Ctrl + B`，`bookdown`套件會把所有.Rmd檔轉成HTML
 - 接下來進到console，輸入下列指令
 
-``` {R commd line, eval=FALSE}
+``` {bash commd line, eval=FALSE}
 0. d:
 1. cd d:\work\02-DB\00DB_book
 2. mkdir docs # create docs folder to host html file.
