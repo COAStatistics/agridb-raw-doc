@@ -1,9 +1,11 @@
 ---
 title: "農業統計資料庫說明文件"
 author: "SzuWei Chen"
-date: "2018年5月30日"
+date: "2018年12月3日"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: 
+  bookdown::gitbook:
+    highlight: pygments
 documentclass: book
 bibliography: 
 biblio-style: apalike
@@ -16,25 +18,27 @@ description: "農委會統計室執行之農業統計資料庫說明文件"
 # 農業統計資料庫說明文件 {-}
 - [成果網址](https://coastatistics.github.io/agridb-raw-doc/index.html)
 - 本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。
-- 本文件是以`R`開發，使用`bookdown`與`rmarkdown`完成動態的gitbook編寫，並使用gitpages架在gitgub上，作為日後統一的資料庫文件。
+- 本文件是以`R`開發，使用`markdown`語言進行網站/文件編寫。
+- 完成編寫後使用套件`bookdown`與`rmarkdown`完成動態的gitbook編寫，並使用gitpages架在gitgub上，作為日後統一的資料庫文件。
+- [bookdown技術文件](https://bookdown.org/yihui/bookdown/markdown-syntax.html)
 
 
 ## 專案初始化 {-}
 
 ```{r instruction, eval=FALSE}
-#1. install R & R-Studio
+#1. Install R & R-Studio
 R: https://cran.r-project.org/
 RStudio: https://www.rstudio.com/products/rstudio/download/
 
-#2.
-在RStudio新建一個專案
+#2. Create a project in R-Studio
+在R-Studio新建一個專案
 
 #3. clone from github
 在cmd模式下移動到你本機的專案路徑後，使用git指令
+git init # 先起始一個git資料夾
+git clone https://github.com/COAStatistics/agridb-raw-doc.git # 複製專案程式碼
 
-git clone https://github.com/COAStatistics/agridb.git
-
-#4. install and require the packages: bookdown, rmarkdown.
+#4. Install and require the packages: bookdown, rmarkdown.
 install.packages("bookdown")
 install.packages("rmarkdown")
 library(bookdown)
@@ -43,12 +47,41 @@ library(rmarkdown)
 
 ## 製作流程 {-}
 
-- 編輯.Rmd檔
+- 編輯`.md`與`.Rmd`檔
 - 編輯完成後按`Ctrl + B`，`bookdown`套件會把所有.Rmd檔轉成HTML
-- 在專案路徑底下建立`docs`資料夾，並把`.../_book`資料夾底下的所有文件複製到`docs`內，如此才可使用git pages呈現
+- 接下來進到console，輸入下列指令
 
-> 1. mkdir docs # create docs folder to host html file.
-> 2. ROBOCOPY "d:/work/02-DB/00DB_book/_book" "d:/work/02-DB/00DB_book/docs" /MIR /COPYALL /IS # copy all file into /docs
+``` {R commd line, eval=FALSE}
+0. d:
+1. cd d:\work\02-DB\00DB_book
+2. mkdir docs # create docs folder to host html file.
+3. ROBOCOPY "d:/work/02-DB/00DB_book/_book" "d:/work/02-DB/00DB_book/docs" /MIR /COPYALL /IS # copy all file into /docs (need admin auth)
+```
+
+> 說明0: 移動到d槽
+
+> 說明1: 移動到專案路徑
+
+> 說明2: 在專案路徑底下建立`docs`資料夾(第一次設定完成後即可)
+
+> 說明3: 把`.../_book`資料夾底下的所有文件複製到`docs`內，如此才可使用git pages呈現(需要管理者權限)
+
+
+## 檔案說明 {-}
+
+ - README.md
+ 
+ > 對應到github最下方的專案簡介
+ 
+ - index.Rmd
+ 
+ > 對應為bookdown的首頁
+ 
+ - XXXX.Rmd
+ 
+ > 對應的是左邊章節(如01-前言.Rmd, 02-休耕轉作.Rmd ... etc)
+
+ - header後面的`{-}`為不在章節顯示編碼
 
 ## git page設定 {-}
 

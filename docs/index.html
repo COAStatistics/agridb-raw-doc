@@ -101,12 +101,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>農業統計資料庫說明文件</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5b088e6a188e5889de5a78be58c96"><i class="fa fa-check"></i>專案初始化</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8a3bde4bd9ce6b581e7a88b"><i class="fa fa-check"></i>製作流程</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e6aa94e6a188e8aaaae6988e"><i class="fa fa-check"></i>檔案說明</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#git-page"><i class="fa fa-check"></i>git page設定</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e69599e5adb8e7b6b2e59d80"><i class="fa fa-check"></i>教學網址</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#git-logcommit-id"><i class="fa fa-check"></i>查詢git log，並以簡寫描述commit ID</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>1</b> 前言</a></li>
+<li class="chapter" data-level="1" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>1</b> 前言</a><ul>
+<li class="chapter" data-level="" data-path="section-1.html"><a href="section-1.html#e585a7e5aeb9"><i class="fa fa-check"></i>內容</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 休耕轉作資料庫</a><ul>
 <li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 背景說明</a></li>
 <li class="chapter" data-level="2.2" data-path="section-2.html"><a href="section-2.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 資料欄位</a><ul>
@@ -201,30 +204,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">農業統計資料庫說明文件</h1>
 <h4 class="author"><em>SzuWei Chen</em></h4>
-<h4 class="date"><em>2018年5月30日</em></h4>
+<h4 class="date"><em>2018年12月3日</em></h4>
 </div>
 <div id="e8beb2e6a5ade7b5b1e8a888e8b387e69699e5baabe8aaaae6988ee69687e4bbb6" class="section level1 unnumbered">
 <h1>農業統計資料庫說明文件</h1>
 <ul>
 <li><a href="https://coastatistics.github.io/agridb-raw-doc/index.html">成果網址</a></li>
 <li>本專案是從102年的「農業雲端服務建置計畫」中提出，研擬串聯人、地、物等農業統計資料，作為補貼或農業統計調查之勾稽依據。</li>
-<li>本文件是以<code>R</code>開發，使用<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並使用gitpages架在gitgub上，作為日後統一的資料庫文件。</li>
+<li>本文件是以<code>R</code>開發，使用<code>markdown</code>語言進行網站/文件編寫。</li>
+<li>完成編寫後使用套件<code>bookdown</code>與<code>rmarkdown</code>完成動態的gitbook編寫，並使用gitpages架在gitgub上，作為日後統一的資料庫文件。</li>
+<li><a href="https://bookdown.org/yihui/bookdown/markdown-syntax.html">bookdown技術文件</a></li>
 </ul>
 <div id="e5b088e6a188e5889de5a78be58c96" class="section level2 unnumbered">
 <h2>專案初始化</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. install R &amp; R-Studio</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1. Install R &amp; R-Studio</span>
 R<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>cran.r<span class="op">-</span>project.org<span class="op">/</span>
 RStudio<span class="op">:</span><span class="st"> </span>https<span class="op">:</span><span class="er">//</span>www.rstudio.com<span class="op">/</span>products<span class="op">/</span>rstudio<span class="op">/</span>download<span class="op">/</span>
 
-<span class="co">#2.</span>
-在RStudio新建一個專案
+<span class="co">#2. Create a project in R-Studio</span>
+在R<span class="op">-</span>Studio新建一個專案
 
 <span class="co">#3. clone from github</span>
 在cmd模式下移動到你本機的專案路徑後，使用git指令
+git init <span class="co"># 先起始一個git資料夾</span>
+git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb<span class="op">-</span>raw<span class="op">-</span>doc.git <span class="co"># 複製專案程式碼</span>
 
-git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>COAStatistics<span class="op">/</span>agridb.git
-
-<span class="co">#4. install and require the packages: bookdown, rmarkdown.</span>
+<span class="co">#4. Install and require the packages: bookdown, rmarkdown.</span>
 <span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
 <span class="kw">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)
 <span class="kw">library</span>(bookdown)
@@ -233,16 +238,50 @@ git clone https<span class="op">:</span><span class="er">//</span>github.com<spa
 <div id="e8a3bde4bd9ce6b581e7a88b" class="section level2 unnumbered">
 <h2>製作流程</h2>
 <ul>
-<li>編輯.Rmd檔</li>
+<li>編輯<code>.md</code>與<code>.Rmd</code>檔</li>
 <li>編輯完成後按<code>Ctrl + B</code>，<code>bookdown</code>套件會把所有.Rmd檔轉成HTML</li>
-<li>在專案路徑底下建立<code>docs</code>資料夾，並把<code>.../_book</code>資料夾底下的所有文件複製到<code>docs</code>內，如此才可使用git pages呈現</li>
+<li>接下來進到console，輸入下列指令</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span>. d<span class="op">:</span>
+<span class="dv">1</span>. cd d<span class="op">:</span>\work\<span class="dv">02</span><span class="op">-</span>DB\00DB_book
+<span class="dv">2</span>. mkdir docs <span class="co"># create docs folder to host html file.</span>
+<span class="dv">3</span>. ROBOCOPY <span class="st">&quot;d:/work/02-DB/00DB_book/_book&quot;</span> <span class="st">&quot;d:/work/02-DB/00DB_book/docs&quot;</span> <span class="op">/</span>MIR <span class="op">/</span>COPYALL <span class="op">/</span>IS <span class="co"># copy all file into /docs (need admin auth)</span></code></pre></div>
+<blockquote>
+<p>說明0: 移動到d槽</p>
+</blockquote>
+<blockquote>
+<p>說明1: 移動到專案路徑</p>
+</blockquote>
+<blockquote>
+<p>說明2: 在專案路徑底下建立<code>docs</code>資料夾(第一次設定完成後即可)</p>
+</blockquote>
+<blockquote>
+<p>說明3: 把<code>.../_book</code>資料夾底下的所有文件複製到<code>docs</code>內，如此才可使用git pages呈現(需要管理者權限)</p>
+</blockquote>
+</div>
+<div id="e6aa94e6a188e8aaaae6988e" class="section level2 unnumbered">
+<h2>檔案說明</h2>
+<ul>
+<li>README.md</li>
 </ul>
 <blockquote>
-<ol style="list-style-type: decimal">
-<li>mkdir docs # create docs folder to host html file.</li>
-<li>ROBOCOPY “d:/work/02-DB/00DB_book/_book&quot; “d:/work/02-DB/00DB_book/docs” /MIR /COPYALL /IS # copy all file into /docs</li>
-</ol>
+<p>對應到github最下方的專案簡介</p>
 </blockquote>
+<ul>
+<li>index.Rmd</li>
+</ul>
+<blockquote>
+<p>對應為bookdown的首頁</p>
+</blockquote>
+<ul>
+<li>XXXX.Rmd</li>
+</ul>
+<blockquote>
+<p>對應的是左邊章節(如01-前言.Rmd, 02-休耕轉作.Rmd … etc)</p>
+</blockquote>
+<ul>
+<li>header後面的<code>{-}</code>為不在章節顯示編碼</li>
+</ul>
 </div>
 <div id="git-page" class="section level2 unnumbered">
 <h2>git page設定</h2>
