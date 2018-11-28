@@ -3,9 +3,7 @@ title: "農業統計資料庫說明文件"
 author: "SzuWei Chen"
 date: "2018年12月3日"
 site: bookdown::bookdown_site
-output: 
-  bookdown::gitbook:
-    highlight: pygments
+output: bookdown::gitbook
 documentclass: book
 bibliography: 
 biblio-style: apalike
